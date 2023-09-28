@@ -31,4 +31,4 @@ clauses
     situ(tallin, estonia).
     situ(X, europe) :- situ(X, estonia).
     situ(syndey, australia).
-    situ(X, australia_kontinent) :- situ(X, australia).
+    situ(X, australia-kontinent) :- situ(X, australia).

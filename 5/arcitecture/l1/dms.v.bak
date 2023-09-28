@@ -1,0 +1,12 @@
+module dms
+(input wire line,
+input wire [1:0] adr,
+output wire data0,
+output wire data1,
+output wire data2,
+output wire data3 );
+assign data0 = (adr==2'h0)?line:1'b0;
+assign data1 = (adr==2'h1)?line:1'b0;
+assign data2 = (adr==2'h2)?line:1'b0;
+assign data3 = (adr==2'h3)?line:1'b0;
+endmodule

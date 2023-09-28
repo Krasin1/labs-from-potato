@@ -5,7 +5,7 @@ predicates
     female(person)
     married(person,person)
     son(person, person)
-    daughter(person, person)
+    daugter(person, person)
     mom(person, person)
     dad(person, person)
     sis(person, person)
@@ -66,7 +66,7 @@ clauses
     mom(nina, serezha).
     
     son(X, Y) :- male(X), dad(Y,X); male(X), mom(Y,X).
-    daughter(X, Y) :- female(X), dad(Y,X); female(X), mom(Y,X).
+    son(X, Y) :- female(X), dad(Y,X); female(X), mom(Y,X).
     sis(X, Y) :- female(X), mom(SOME, X), mom(SOME, Y); female(X), dad(NAME, X), dad(NAME, Y).
     bro(X, Y) :- male(X), mom(SOME, X), mom(SOME, Y); male(X), dad(NAME, X), dad(NAME, Y).
     uncle(X, Y) :- male(X), mom(MOM, Y), sis(MOM,X); male(X), dad(DAD, Y), bro(DAD, X).

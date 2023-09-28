@@ -1,0 +1,103 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/xxx
+vcoder
+Z0 !s110 1695905882
+!i10b 1
+!s100 NeYPWMza31R1fe2icEVNX2
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IY`4CSi<<Y4P0CNkJ?zaj70
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 d/home/xxx/labs-from-potato/5/arcitecture/lr1
+w1695902050
+8/home/xxx/labs-from-potato/5/arcitecture/lr1/coder.v
+F/home/xxx/labs-from-potato/5/arcitecture/lr1/coder.v
+!i122 64
+L0 1 25
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1695905882.000000
+!s107 /home/xxx/labs-from-potato/5/arcitecture/lr1/coder.v|
+!s90 -F=/home/xxx/vlog.opt|-F=|-reportprogress|300|-work|work|-stats=none|/home/xxx/labs-from-potato/5/arcitecture/lr1/coder.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vcoder_tb
+R0
+!i10b 1
+!s100 >n0;gbAo6z_@>S8S3RaLU3
+R1
+IQ6d;6]f^B@zOg9N3z>g>o0
+R2
+R3
+w1695902594
+8/home/xxx/labs-from-potato/5/arcitecture/lr1/testbench.v
+F/home/xxx/labs-from-potato/5/arcitecture/lr1/testbench.v
+!i122 65
+L0 2 25
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/xxx/labs-from-potato/5/arcitecture/lr1/testbench.v|
+!s90 -F=/home/xxx/vlog.opt|-F=|-reportprogress|300|-work|work|-stats=none|/home/xxx/labs-from-potato/5/arcitecture/lr1/testbench.v|
+!i113 1
+R6
+R7
+vdms
+R0
+!i10b 1
+!s100 YkUn4Mf]TWaFC]CZZX[Wc2
+R1
+IRLN5A7lo`FMC?50CmVzCj0
+R2
+R3
+w1695903257
+8/home/xxx/labs-from-potato/5/arcitecture/lr1/dms.v
+F/home/xxx/labs-from-potato/5/arcitecture/lr1/dms.v
+!i122 67
+L0 1 12
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/xxx/labs-from-potato/5/arcitecture/lr1/dms.v|
+!s90 -F=/home/xxx/vlog.opt|-F=|-reportprogress|300|-work|work|-stats=none|/home/xxx/labs-from-potato/5/arcitecture/lr1/dms.v|
+!i113 1
+R6
+R7
+vmy_tb
+R0
+!i10b 1
+!s100 TJ`_ACY@zARjRVlHlF@Nb3
+R1
+IfU^gDR[_SM9aXF>nKUB[W0
+R2
+R3
+w1695905880
+8/home/xxx/labs-from-potato/5/arcitecture/lr1/my_testbench.v
+F/home/xxx/labs-from-potato/5/arcitecture/lr1/my_testbench.v
+!i122 66
+L0 2 28
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/xxx/labs-from-potato/5/arcitecture/lr1/my_testbench.v|
+!s90 -F=/home/xxx/vlog.opt|-F=|-reportprogress|300|-work|work|-stats=none|/home/xxx/labs-from-potato/5/arcitecture/lr1/my_testbench.v|
+!i113 1
+R6
+R7

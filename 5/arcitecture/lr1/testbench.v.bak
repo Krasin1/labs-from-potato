@@ -1,0 +1,28 @@
+`timescale 1ns/100ps
+module testbench;
+reg [3:0] test_in;
+wire [6:0] test_out;
+coder test(.data(test_in), .seg(test_out));
+initial
+begin
+test_in=4'b0000;
+#200;
+test_in=4'b0001;
+#200;
+test_in=4'b0010;
+#200;
+test_in=4'b0011;
+#200;
+test_in=4'b0100;
+#200;
+test_in=4'b0101;
+#200;
+test_in=4'b0110;
+#200;
+test_in=4'b0111;
+#200;
+$stop;
+end
+endmodule
+
+

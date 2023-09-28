@@ -1,0 +1,29 @@
+`timescale 1ns/100ps
+module my_tb;
+reg [1:0] test_in;
+reg test_in1;
+wire test_out0;
+wire test_out1;
+wire test_out2;
+wire test_out3;
+dms test(.adr(test_in), .line(test_in1),
+.data0(test_out0),
+.data1(test_out1),
+.data2(test_out2),
+.data3(test_out3));
+
+initial
+begin
+test_in=2'b00;
+test_in1=1'b1;
+#200;
+test_in=2'b01;
+#200;
+test_in=2'b10;
+#200;
+test_in=2'b11;
+#200;
+
+$stop;
+end
+endmodule

@@ -1,0 +1,25 @@
+# vlog -work work -stats=none /home/xxx/labs-from-potato/5/arcitecture/l1/coder.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# -- Compiling module coder
+# 
+# Top level modules:
+# 	coder
+# 
+# 
+# vlog -work work -stats=none /home/xxx/labs-from-potato/5/arcitecture/l1/testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# -- Compiling module coder_tb
+# 
+# Top level modules:
+# 	coder_tb
+# 
+# 
+# vlog -work work -stats=none /home/xxx/labs-from-potato/5/arcitecture/l1/dms.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# -- Compiling module dms
+# 
+# Top level modules:
+# 	dms
+# 
+# 
+# 3 compiles, 0 failed with no errors.
