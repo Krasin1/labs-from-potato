@@ -5,12 +5,13 @@ class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int N = 0;
-        System.out.println("\nВариант №7");
         while(true) {
+            System.out.println("\nВариант №7");
             System.out.println("\nВведите номер задания 1 - 5 (0 - для выхода) : ");
             try {
                 N = in.nextInt();
             } catch (InputMismatchException some) {
+                System.out.printf("\033[2J");
                 System.out.println("Некорректный ввод");
                 in.nextLine();
                 continue;
@@ -35,6 +36,7 @@ class Main {
                     zad5();
                     break;
                 default:
+                    System.out.printf("\033[2J");
                     System.out.println("Нет такого задания");
                     break;
             }
@@ -42,6 +44,7 @@ class Main {
     }
 
     public static void zad1(Scanner in) {
+            System.out.printf("\033[2J");
         System.out.println("\nЗадание №1\n");
         System.out.println("    m^2 + 2,8m + 0,355");
         System.out.println("N = ------------------");
@@ -51,6 +54,10 @@ class Main {
 
         try {
             m = in.nextDouble();
+            if (m > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -60,22 +67,31 @@ class Main {
 
         try {
             y = in.nextDouble();
+            if (y > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
             return;
         }
         double N = ((m * m + 2.8 * m + 0.355) / (Math.cos(2 * y) + 3.6));
-        System.out.printf("\nОтвет N = %.3f\n", N);
+        System.out.printf("\nОтвет N = %e\n", N);
     }
 
     public static void zad2(Scanner in) {
+            System.out.printf("\033[2J");
         System.out.println("\nЗадание №2\n");
         System.out.println("    Найти косинус угла между векторами a,b");
         System.out.print("a = (a1, a2)\na1 = ");
         double a1 = 0, a2 = 0, b1 = 0, b2 = 0;
         try {
             a1 = in.nextDouble();
+            if (a1 > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -84,6 +100,10 @@ class Main {
         System.out.print("a2 = ");
         try {
             a2 = in.nextDouble();
+            if (a2 > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -92,6 +112,10 @@ class Main {
         System.out.print("\nb = (b1, b2)\nb1 = ");
         try {
             b1 = in.nextDouble();
+            if (b1 > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -100,6 +124,10 @@ class Main {
         System.out.print("b2 = ");
         try {
             b2 = in.nextDouble();
+            if (b2 > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -111,10 +139,11 @@ class Main {
             return;
         }
         double ans = (a1 * b1 + a2 * b2) / denominator; 
-        System.out.printf("\ncos x = %.3f\n", ans);
+        System.out.printf("\ncos x = %e\n", ans);
     }
 
     public static void zad3(Scanner in) {
+            System.out.printf("\033[2J");
         int N = 0;
         System.out.println("\nЗадание №3\n");
         System.out.print(
@@ -131,6 +160,7 @@ class Main {
     }
 
     public static void zad4(Scanner in) {
+            System.out.printf("\033[2J");
         double x = 0, y = 0, R = 0;
         System.out.println("\nЗадание №4\n");
         System.out.println(
@@ -138,6 +168,10 @@ class Main {
         System.out.print("x = ");
         try {
             x = in.nextDouble();
+            if (x > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -146,6 +180,10 @@ class Main {
         System.out.print("y = ");
         try {
             y = in.nextDouble();
+            if (y > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -154,6 +192,10 @@ class Main {
         System.out.print("R = ");
         try {
             R = in.nextDouble();
+            if (R > 1e15) {
+                System.out.println("Слишком большое число");
+                throw new InputMismatchException();
+            }
         } catch (InputMismatchException some) {
             System.out.println("Некорректный ввод");
             in.nextLine();
@@ -165,6 +207,7 @@ class Main {
     }
 
     public static void zad5() {
+            System.out.printf("\033[2J");
         System.out.println("\nЗадание №4\n");
         System.out.println(
                 "Дан файл f, компоненты которого являются действитетльными числами.\nНайти разность первой и последней компонент файла.");
@@ -176,7 +219,7 @@ class Main {
         }
         if (array.length > 0) {
             double x = array[0] - array[array.length - 1];
-            System.out.printf("\n%.3f - %.3f = %.3f\n", array[0], array[array.length - 1], x);
+            System.out.printf("\n%e - %e = %e\n", array[0], array[array.length - 1], x);
         } else {
             System.out.println("Пустой файл");
         }
