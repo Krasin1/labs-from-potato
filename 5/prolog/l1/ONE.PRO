@@ -12,17 +12,19 @@ predicates
     bro(person, person)
     uncle(person, person)
     aunt(person, person)
-    %granny(person, person)
-    %granddaddy(person, person)
-    %kuzen(person, person)
-    %kuzina(person, person)
-    %pelmyannik(person, person)
-    %pelmyannitsa(person, person)
-    %testb(person, person)
-    %tesha(person, person)
-    %svekrov(person, person)
-    %patent(person, person)
-    %relative(person, person)
+    granny(person, person)
+    granddaddy(person, person)
+    kuzen(person, person)
+    kuzina(person, person)
+    plemyannik(person, person)
+    plemyannitsa(person, person)
+    testb(person, person)
+    tesha(person, person)
+    svekr(person, person)
+    svekrov(person, person)
+    parent(person, person)
+    relative(person, person)
+    notalone(person, person)
 
 clauses
     male(vlad).
@@ -34,6 +36,7 @@ clauses
     male(ilya).
     male(nikita).
     male(viktor).
+    male(dima).
     female(natasha).
     female(sveta).
     female(nina).
@@ -41,12 +44,12 @@ clauses
     female(ulya).
     female(luba).
 
-    married(zhenya, natasha).
-    married(vova, ulya).
-    married(serezha, tanya).
-    married(tolya, sveta).
-    married(anatolyi, nina).
-    married(viktor, luba).
+%   married(zhenya, natasha).
+%   married(vova, ulya).
+%   married(serezha, tanya).
+%   married(tolya, sveta).
+%   married(anatolyi, nina).
+%   married(viktor, luba).
 
     dad(zhenya, vlad).
     dad(zhenya, dima).
@@ -56,6 +59,8 @@ clauses
     dad(tolya, vova).
     dad(anatolyi, natasha).
     dad(anatolyi, serezha).
+    %dad(viktor
+    %dad(viktor
     mom(natasha, vlad).
     mom(natasha, dima).
     mom(ulya, ilya).
@@ -64,11 +69,39 @@ clauses
     mom(sveta, vova).
     mom(nina, natasha).
     mom(nina, serezha).
+    %mom(luba,
+    %mom(luba,
     
     son(X, Y) :- male(X), dad(Y,X); male(X), mom(Y,X).
     daughter(X, Y) :- female(X), dad(Y,X); female(X), mom(Y,X).
-    sis(X, Y) :- female(X), mom(SOME, X), mom(SOME, Y); female(X), dad(NAME, X), dad(NAME, Y).
-    bro(X, Y) :- male(X), mom(SOME, X), mom(SOME, Y); male(X), dad(NAME, X), dad(NAME, Y).
-    uncle(X, Y) :- male(X), mom(MOM, Y), sis(MOM,X); male(X), dad(DAD, Y), bro(DAD, X).
-    aunt(X, Y) :- female(X), mom(MOM, Y), sis(MOM,X); female(X), dad(DAD, Y), sis(DAD, X).
-   % granny(X, Y) :- female(X).
+
+    married(X, Y) :- female(Y), male(X), mom(Y, Z), dad(X, Z).
+
+    parent(X, Y) :- dad(X, Y); mom(X, Y).
+
+    sis(X, Y) :- female(X), mom(SOME, X), mom(SOME, Y), X<>Y.
+    bro(X, Y) :- male(X), mom(SOME, X), mom(SOME, Y), X<>Y.
+    notalone(X, Y) :- mom(SOME, X), mom(SOME, Y), X<>Y.  %bro or sister exist
+
+    uncle(X, Y) :- male(X), bro(BRO, X), dad(BRO, Y); male(X), sis(SIS, X), mom(SIS, Y). 
+    aunt(X, Y) :- female(X), sis(X, BRO), dad(BRO, Y); female(X), sis(X, SIS), mom(SIS, Y).
+
+    granny(X, Y) :- parent(SOME, Y), mom(X, SOME).
+    granddaddy(X, Y) :- parent(SOME, Y), dad(X, SOME).
+
+    kuzen(X, Y) :- male(X), parent(PARENT, X), notalone(PARENT, SOME), parent(SOME, Y), X<>Y.
+    kuzina(X, Y) :- female(X), parent(PARENT, X), notalone(PARENT, SOME), parent(SOME, Y), X<>Y.
+
+    plemyannik(X, Y) :- male(X), parent(PARENT, X), notalone(PARENT, Y).
+    plemyannitsa(X, Y) :- female(X), parent(PARENT, X), notalone(PARENT, Y).
+
+    testb(X, Y) :- male(X), male(Y), married(Y, SOME), dad(X, SOME).
+    tesha(X, Y) :- female(X), male(Y), married(Y, SOME), mom(X, SOME).
+
+    svekr(X, Y) :-  male(X), female(Y), married(SOME, Y), dad(X, SOME).
+    svekrov(X, Y) :- female(X), female(Y), married(SOME, Y), mom(X, SOME).
+
+    relative(X, Y) :- parent(X, Y); parent(Y, X).
+    relative(X, Y) :- notalone(X, Y).
+    relative(X, Y) :- parent(X, Z), relative(Z, Y); parent(A, X), relative(A, Y).
+    relative(X, Y) :- relative(X, Z), relative(Z, Y).
