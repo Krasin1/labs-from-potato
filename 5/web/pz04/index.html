@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Мой первый сайт</title>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <H1 align="center"> Привет МИР!!!</H1>
+    <script>
+        alert('Привет, мир!');
+    </script>
+    <p>Дорогой друг я рад видеть тебя на моем первом сайте!</p>
+    <form name="button1" class="all_center">
+        <input type="button" value="ИНФО" onclick="show_information();">
+    </form>
+
+
+    <form name="button2" class="all_center">
+        <input type="number" min="3.00" max="5.00" style="width: 150px;" name="sqr" placeholder="Средний балл">
+        <input type="button" value="Показать средний балл" onclick="show_information2(button2.sqr);">
+    </form>
+
+    <h1 class="radio_button">Опрос</h1>
+    <form name="questionnaire" class="radio_button">
+
+        <input type="text" name="family" placeholder="Фамилия"><br>
+        <label> Оценка по дисциплине «Программирование»:</label><br>
+        <input type="radio" name="radio1" value="5" checked="checked"><label>Отлично</label><br>
+        <input type="radio" name="radio1" value="4"><label>Хорошо</label><br>
+        <input type="radio" name="radio1" value="3"><label>Удовлетворительно</label><br>
+        <label>Оценка по дисциплине «Математика»:</label><br>
+        <input type="radio" name="radio2" value="5" checked="checked"><label>Отлично</label><br>
+        <input type="radio" name="radio2" value="4"><label>Хорошо</label><br>
+        <input type="radio" name="radio2" value="3"><label>Удовлетворительно</label><br>
+        <label>Оценка по дисциплине «Физика»:</label><br>
+        <input type="radio" name="radio3" value="5" checked="checked"><label>Отлично</label><br>
+        <input type="radio" name="radio3" value="4"><label>Хорошо</label><br>
+        <input type="radio" name="radio3" value="3"><label>Удовлетворительно</label><br>
+        <input type="button" value="Отправить" onclick="send(questionnaire.family,
+ questionnaire.radio1, questionnaire.radio2, questionnaire.radio3);">
+    </form>
+
+</body>
+
+</html>
