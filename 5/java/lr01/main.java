@@ -54,8 +54,10 @@ class Main {
 
         try {
             m = in.nextDouble();
-            if (m > 1e15) {
-                System.out.println("Слишком большое число");
+            System.out.print("y = ");
+            y = in.nextDouble();
+            if ((m > 1e15) | (y > 1e15)) {
+                System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException some) {
@@ -65,18 +67,7 @@ class Main {
         }
         System.out.print("y = ");
 
-        try {
-            y = in.nextDouble();
-            if (y > 1e15) {
-                System.out.println("Слишком большое число");
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException some) {
-            System.out.println("Некорректный ввод");
-            in.nextLine();
-            return;
-        }
-        double N = ((m * m + 2.8 * m + 0.355) / (Math.cos(2 * y) + 3.6));
+        double N = ((m * m + 2.8 * m + 0.355) / (Math.cos(2 * y) + 3.6)); //знаменатель всегда больше нуля
         System.out.printf("\nОтвет N = %e\n", N);
     }
 
@@ -88,20 +79,10 @@ class Main {
         double a1 = 0, a2 = 0, b1 = 0, b2 = 0;
         try {
             a1 = in.nextDouble();
-            if (a1 > 1e15) {
-                System.out.println("Слишком большое число");
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException some) {
-            System.out.println("Некорректный ввод");
-            in.nextLine();
-            return;
-        }
-        System.out.print("a2 = ");
-        try {
+            System.out.print("a2 = ");
             a2 = in.nextDouble();
-            if (a2 > 1e15) {
-                System.out.println("Слишком большое число");
+            if ((a1 > 1e15) | (a2 > 1e15)){
+                System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException some) {
@@ -109,23 +90,14 @@ class Main {
             in.nextLine();
             return;
         }
+
         System.out.print("\nb = (b1, b2)\nb1 = ");
         try {
             b1 = in.nextDouble();
-            if (b1 > 1e15) {
-                System.out.println("Слишком большое число");
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException some) {
-            System.out.println("Некорректный ввод");
-            in.nextLine();
-            return;
-        }
-        System.out.print("b2 = ");
-        try {
+            System.out.print("b2 = ");
             b2 = in.nextDouble();
-            if (b2 > 1e15) {
-                System.out.println("Слишком большое число");
+            if ((b1 > 1e15) | (b2 > 1e15)) {
+                System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException some) {
@@ -165,35 +137,15 @@ class Main {
         System.out.println("\nЗадание №4\n");
         System.out.println(
                 "    Ввести с клавиатуры координаты точки А(x,y) и определить лежит ли\nданная точка внутри окружности радиуса R. Центром окружности является\nначало координат. Ответ выветси в виде сообщения.");
-        System.out.print("x = ");
         try {
+            System.out.print("x = ");
             x = in.nextDouble();
-            if (x > 1e15) {
-                System.out.println("Слишком большое число");
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException some) {
-            System.out.println("Некорректный ввод");
-            in.nextLine();
-            return;
-        }
-        System.out.print("y = ");
-        try {
+            System.out.print("y = ");
             y = in.nextDouble();
-            if (y > 1e15) {
-                System.out.println("Слишком большое число");
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException some) {
-            System.out.println("Некорректный ввод");
-            in.nextLine();
-            return;
-        }
-        System.out.print("R = ");
-        try {
+            System.out.print("R = ");
             R = in.nextDouble();
-            if (R > 1e15) {
-                System.out.println("Слишком большое число");
+            if ((x > 1e15) | (y > 1e15) | (R > 1e15)) {
+                System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException some) {
@@ -201,7 +153,6 @@ class Main {
             in.nextLine();
             return;
         }
-
         boolean ans = (R * R - (x * x + y * y)) > 0.000001; // туть теорема пифагора
         System.out.printf("\nОтвет = %b\n", ans);
     }
@@ -216,9 +167,14 @@ class Main {
             array = file.lines().mapToDouble(Double::parseDouble).toArray();
         } catch (IOException some) {
             System.out.println(some.getMessage());
+            return;
         }
         if (array.length > 0) {
             double x = array[0] - array[array.length - 1];
+            System.out.println("\nИсходный файл:");
+            for(var a: array) {
+                System.out.printf("%e\n", a);
+            }
             System.out.printf("\n%e - %e = %e\n", array[0], array[array.length - 1], x);
         } else {
             System.out.println("Пустой файл");
