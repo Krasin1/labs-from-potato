@@ -56,7 +56,7 @@ class Main {
             m = in.nextDouble();
             System.out.print("y = ");
             y = in.nextDouble();
-            if ((m > 1e15) | (y > 1e15)) {
+            if ((m > 1e15) || (y > 1e15)) {
                 System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
@@ -81,7 +81,7 @@ class Main {
             a1 = in.nextDouble();
             System.out.print("a2 = ");
             a2 = in.nextDouble();
-            if ((a1 > 1e15) | (a2 > 1e15)){
+            if ((a1 > 1e15) || (a2 > 1e15)){
                 System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
@@ -96,7 +96,7 @@ class Main {
             b1 = in.nextDouble();
             System.out.print("b2 = ");
             b2 = in.nextDouble();
-            if ((b1 > 1e15) | (b2 > 1e15)) {
+            if ((b1 > 1e15) || (b2 > 1e15)) {
                 System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
@@ -144,7 +144,11 @@ class Main {
             y = in.nextDouble();
             System.out.print("R = ");
             R = in.nextDouble();
-            if ((x > 1e15) | (y > 1e15) | (R > 1e15)) {
+            if (R < 0) {
+                System.out.print("Радиус не может быть отрицательный");
+                throw new InputMismatchException();
+            }
+            if ((x > 1e15) || (y > 1e15) || (R > 1e15)) {
                 System.out.println("Слишком большие числа: не больше 1е15");
                 throw new InputMismatchException();
             }
@@ -159,7 +163,7 @@ class Main {
 
     public static void zad5() {
             System.out.printf("\033[2J");
-        System.out.println("\nЗадание №4\n");
+        System.out.println("\nЗадание №5\n");
         System.out.println(
                 "Дан файл f, компоненты которого являются действитетльными числами.\nНайти разность первой и последней компонент файла.");
         double[] array = null;

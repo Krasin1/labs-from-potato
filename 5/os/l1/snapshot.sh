@@ -22,13 +22,28 @@ then
 
 elif [ "$1" == "last" ]
 then
+    if [ ! -e .bd/ ]
+    then
+        echo "Ошибка: репозирорий не инициализирован"
+        exit 1
+    fi
     source .bd/variable.txt
     last=$((last-1))
-    for file in *; do if [[ ! "$file" == .bd ]]; then rm -rf $file; fi; done
-    cp -r .bd/$last/* .
+    if [ ! -e ./.bd/$last/ ] 
+    then 
+        echo "Ошибка: предыдущая версия не найдена"
+        exit 1
+    fi
+        for file in *; do if [ ! "$file" == .bd ] | [ ! "$file" == "snapshot.sh" ] ; then rm -rf $file; fi; done
+    cp -r .bd/$last/* ./
 
 elif [ "$1" == "load" ]
 then
+    if [ ! -e .bd/ ]
+    then
+        echo "Ошибка: репозирорий не инициализирован"
+        exit 1
+    fi
     if [ ! -n "$2" ]
     then
         echo "Ошибка: не введён номер версии"
@@ -44,7 +59,7 @@ then
             * ) echo ""; exit 1;;
         esac
 
-        for file in *; do if [[ ! "$file" == .bd ]]; then rm -rf $file; fi; done
+        for file in *; do if [ ! "$file" == .bd ] | [ ! "$file" == "snapshot.sh" ] ; then rm -rf $file; fi; done
         cp -r .bd/$2/* .
     else
         echo "Ошибка: версии с данным номером не существует"
@@ -53,6 +68,11 @@ then
 
 elif [ "$1" == "save" ]
 then
+    if [ ! -e .bd/ ]
+    then
+        echo "Ошибка: репозирорий не инициализирован"
+        exit 1
+    fi
 source .bd/variable.txt
 last=$((last+1))
 echo last=$last > .bd/variable.txt

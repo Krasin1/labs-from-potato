@@ -10,27 +10,40 @@ if($first -eq $null) {
 
 if ($first -eq "init") {
     if( ! (Test-Path ./.bd)) {
-        New-Item -Path './.bd' -ItemType Directory
+        New-Item -Path './.bd' -ItemType Directory | Out-Null
     } else {
         write-host "Ошибка: репозиторий уже инициализирован"
         exit 1
     }
     Set-Content ./.bd/variable.txt 'last=1'
-    New-Item -Path './.bd/1' -ItemType Directory
+    New-Item -Path './.bd/1' -ItemType Directory | Out-Null
     Copy-Item -Path ./* -Destination ./.bd/1/ -recurse -exclude .bd/,snapshot.ps1
 
 } elseif ($first -eq "last") {
+    if (!(Test-Path  "./.bd")) {
+        write-host "Ошибка: репозирорий не инициализирован"
+        exit 1
+    }
     $last = Get-Content './.bd/variable.txt' | Out-String | ConvertFrom-StringData
-    Remove-Item './*' -recurse -exclude .bd/,snapshot.ps1
 
     $last = Get-Content './.bd/variable.txt' | Out-String | ConvertFrom-StringData
     $num = [System.Decimal]::Parse($last.last)
     $num--
     [string]$num = $num
 
+    if (!(Test-Path  "./.bd/$num")) {
+        write-host "Ошибка: предыдущая версия не найдена"
+        exit 1
+    }
+
+    Remove-Item './*' -recurse -exclude .bd/,snapshot.ps1
     Copy-Item -Destination ./ -Path ./.bd/$num/* -recurse -exclude .bd/,snapshot.ps1
 
 } elseif ($first -eq "load") {
+    if (!(Test-Path  "./.bd")) {
+        write-host "Ошибка: репозирорий не инициализирован"
+        exit 1
+    }
     if($second -eq $null) {
         write-host "Ошибка: не введён номер версии"
         exit 1
@@ -53,6 +66,10 @@ if ($first -eq "init") {
     }
 
 } elseif ($first -eq "save") {
+    if (!(Test-Path  "./.bd")) {
+        write-host "Ошибка: репозирорий не инициализирован"
+        exit 1
+    }
 
     $last = Get-Content './.bd/variable.txt' | Out-String | ConvertFrom-StringData
     $num = [System.Decimal]::Parse($last.last)
@@ -61,7 +78,7 @@ if ($first -eq "init") {
     [string]$num = $num
 
     if (!(Test-Path "./.bd/$num")) {
-        New-Item -Path "./.bd/$num" -ItemType Directory
+        New-Item -Path "./.bd/$num" -ItemType Directory  | Out-Null
     }
     Copy-Item -Path ./* -Destination ./.bd/$num/ -recurse -exclude .bd/,snapshot.ps1
 } else {
