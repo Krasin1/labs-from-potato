@@ -12,7 +12,7 @@
         body {
             background-color: black;
             color: #f8f5f1;
-            background: url(https://s3.amazonaws.com/noitagame/images/bg.jpg);
+            background: url(images/bg.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -25,16 +25,44 @@
             max-width: 960px;
             margin: 0 auto;
             box-sizing: border-box;
-            padding-left: 1em;
-            padding-right: 1em;
-            padding: 0;
+            padding: 1%;
             text-align: center;
+        }
+
+        .my_email {
+            height: 30px;
+            padding: 6px 10px;
+            background-color: #fff;
+            border: 1px solid #D1D1D1;
+            border-radius: 4px;
+        }
+
+        .button-primary {
+            font: italic small-caps 16px/2 cursive;
+            height: 40px;
+            padding: 0 30px;
+            color: #FFF;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+            cursor: pointer;
+            background-color: #505050;
+            border-color: #000
+        }
+
+        .button-primary:hover{
+            color: #FFF;
+            background-color: #1EAEDB;
+            border-color: #1EAEDB
         }
     </style>
 
     <div class="container">
         <center>
-            <img style="margin-top:3%;" src="images/logo.jpg" width="90%">
+            <img src="images/logo.jpg" width="90%">
         </center>
         <p align="center" style="margin-left:-5%;">
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,12 +77,12 @@
             <tr>
                 <th width="50%" bgcolor="White"><a style="color:black;"
                         href="https://www.gog.com/game/noita">GOG.com</a></th>
-                <th bgcolor="#1b2838"><a style="color:white;"
+                <th bgcolor="#2a475e"><a style="color:white;"
                         href="https://store.steampowered.com/app/881100/Noita/">Steam</a></th>
             </tr>
         </table>
         <br>
-        <div style="text-align:left;margin-left:10%;margin-right:10%;">
+        <div style="text-align:left;margin-left:10%;margin-right:10%;font: italic small-caps 16px/2 cursive;">
             &nbsp;&nbsp;&nbsp;&nbsp;
             <b>Noita</b> is a magical action roguelite set in a world where every pixel is physically simulated. Fight,
             explore, melt, burn, freeze and evaporate your way through the procedurally generated world using spells
@@ -68,16 +96,16 @@
             <br>
 
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Pixel-based physics:</b> Every pixel in the world is simulated. Burn, explode or melt anything. Swim
-            in the blood of your foes!
+            <b>Your own magic:</b> Create new spells as you delve deeper into the caverns. Use your magic to crush
+            your enemies and manipulate the world around you.
             <br><br>
             <video width="100%" autoplay="autoplay" loop="loop" muted="muted">
                 <source src="videos/web1.mp4" type="video/mp4">
             </video>
             <br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Your own magic:</b> Create new spells as you delve deeper into the caverns. Use your magic to crush
-            your enemies and manipulate the world around you.
+            <b>Pixel-based physics:</b> Every pixel in the world is simulated. Burn, explode or melt anything. Swim
+            in the blood of your foes!
             <br><br>
             <video width="100%" autoplay="autoplay" loop="loop" muted="muted">
                 <source src="videos/web2.mp4" type="video/mp4">
@@ -86,35 +114,33 @@
         </div>
 
         <footer>
-            <form method="get">
-                <h3 align="center">Join our mailing list</h3>
-                <td>Mail: </td>
-                <td> <input type="text" style="width:40%;" name="login"></td>
-                <br><br>
+            <form style="font: italic small-caps 16px/2 cursive;" method="get">
+                <h3> Join our mailing list</h3>
+                <td>Mail:</td>
+                <td> <input class="my_email" type="text" style="width:35%;" name="login"></td>
 
-                <input type="submit" value="Subscribe">
-                <input type="reset" value="Reset">
-                <br><br>
+                <td><input class="button-primary" type="submit" value="Subscribe"></td>
+                <td><input class="button-primary" type="reset" value="Reset"></td>
+                <br>
 
             </form>
+            <h3 align="left">&nbsp;Additional Information</h3>
+            <div align="left">
+                <ul type="circle">
+                    <li>
+                        <th width="50%"><a style="color:white;" href="https://devlog.noitagame.com/">Dev Log</a></th>
+                    </li>
+                    <li>
+                        <th width="50%"><a style="color:white;" href="https://nollagames.com/privacy_policy.txt">Privacy
+                                Policy</a></th>
+                    </li>
+                    <li>
+                        <th width="50%"><a style="color:white;" href="https://noitagame.com/press/index.html">Press
+                                kit</a></th>
+                    </li>
+                </ul>
+            </div>
         </footer>
-        <h3 align="left">&nbsp;Additional Information</h3>
-        <div align="left">
-        <ul type="circle">
-            <li>
-                <th width="50%"><a style="color:white;"
-                        href="https://devlog.noitagame.com/">Dev Log</a></th>
-            </li>
-            <li>
-                <th width="50%"><a style="color:white;"
-                        href="https://nollagames.com/privacy_policy.txt">Privacy Policy</a></th>
-            </li>
-            <li>
-                <th width="50%"><a style="color:white;"
-                        href="https://noitagame.com/press/index.html">Press kit</a></th>
-            </li>
-        </ul>
-        </div>
     </div>
 
 </body>
