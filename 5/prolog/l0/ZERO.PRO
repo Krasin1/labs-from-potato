@@ -3,6 +3,7 @@ domains
 predicates
     situ(gorod, strana)
 clauses
+    situ("london",england).
     situ(london, england).
     situ(petersburg, russia).
     situ(kiev, ukraine).
