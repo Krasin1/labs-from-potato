@@ -27,6 +27,7 @@ predicates
     relative(person, person)
     siblings(person, person)
 	dever(person, person)
+
 clauses
     male(vlad).
     male(zhenya).
@@ -38,6 +39,7 @@ clauses
     male(nikita).
     male(viktor).
     male(dima).
+
     female(natasha).
     female(sveta).
     female(nina).
@@ -50,7 +52,6 @@ clauses
 %   married(serezha, tanya).
 %   married(tolya, sveta).
 %   married(anatolyi, nina).
-%   married(viktor, luba).
 
     dad(zhenya, vlad).
     dad(zhenya, dima).
@@ -60,8 +61,7 @@ clauses
     dad(tolya, vova).
     dad(anatolyi, natasha).
     dad(anatolyi, serezha).
-    %dad(viktor
-    %dad(viktor
+
     mom(natasha, vlad).
     mom(natasha, dima).
     mom(ulya, ilya).
@@ -70,8 +70,6 @@ clauses
     mom(sveta, vova).
     mom(nina, natasha).
     mom(nina, serezha).
-    %mom(luba,
-    %mom(luba,
     
     son(X, Y) :- male(X), dad(Y,X); male(X), mom(Y,X).
     daughter(X, Y) :- female(X), dad(Y,X); female(X), mom(Y,X).
@@ -111,4 +109,3 @@ clauses
     relative(X,Y) :- predok(Z,X),predok(A,Y),siblings(Z,A),X<>Y,Z<>X,Z<>Y,A<>X,A<>Y.
 
 	dever(X,Y) :- male(X), female(Y), married(Z, Y), bro(Z, X), X<>Y.
-   
