@@ -1,22 +1,19 @@
-var emailBox = document.getElementById("email");
-
-emailBox.addEventListener("keypress", function(event){
-    if(event.keyCode == 13) {
+var emailBox = document.getElementByName("mailCheck");
+//
+emailBox.addEventListener("submit", function(event){
+    alert("lol");
+    if(event.key == "Enter") {
         alert("lol");
-        email(emailBox);
+        document.getElementById("b").click();
     }
 })
 
 function email(elem) {
-    // alert(typeof elem.value);
     let mail = new String(elem.value);
     if (mail.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        // alert(elem.value + "\nyes");
         document.getElementById("result").innerHTML = "Адрес правильный";
         return;
     }
     document.getElementById("result").innerHTML = "Адрес неверный";
-    // alert(elem.value + "\nno");
-    // return elem.match("/\S+@\S+\.\S+/");
 }
 
