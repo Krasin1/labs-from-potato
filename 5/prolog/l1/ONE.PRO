@@ -1,5 +1,8 @@
 domains
     person = symbol
+database
+    marriedDB(person,person)
+    siblingsDB(person, person)
 predicates
     male(person)
     female(person)
@@ -27,7 +30,8 @@ predicates
     relative(person, person)
     siblings(person, person)
 	dever(person, person)
-    %hadchild(person, person)
+    start()
+    startNot()
 
 clauses
     male(vlad).
@@ -66,18 +70,19 @@ clauses
     mom(nina, natasha).
     mom(nina, serezha).
 
-    %hadchild(X, Y) :- 
+    startNot() :- married(X,Y),fail; siblings(Z,A),fail.
+    start() :- not(startNot()).
     
     son(X, Y) :- male(X), dad(Y,X); male(X), mom(Y,X).
     daughter(X, Y) :- female(X), dad(Y,X); female(X), mom(Y,X).
 
-    married(X, Y) :- female(Y), male(X), mom(Y, Z), dad(X, Z).
+    married(X, Y) :- female(Y), male(X), mom(Y, Z), dad(X, Z), not(marriedDB(X, Y)), assert(marriedDB(X,Y)); marriedDB(X,Y).
 
     parent(X, Y) :- dad(X, Y); mom(X, Y).
 
     sis(X, Y) :- female(X), mom(SOME, X), mom(SOME, Y), X<>Y.
     bro(X, Y) :- male(X), mom(SOME, X), mom(SOME, Y), X<>Y.
-    siblings(X, Y) :- mom(SOME, X), mom(SOME, Y), X<>Y; dad(SOME, X), dad(SOME, Y), X<>Y.  %bro or sister exist
+    siblings(X,Y) :- parent(SOME, X), parent(SOME, Y), X<>Y, not(siblingsDB(X,Y)), assert(siblingsDB(X,Y)); siblingsDB(X,Y).      %bro or sister exist
 
     uncle(X, Y) :- male(X), bro(BRO, X), dad(BRO, Y); male(X), sis(SIS, X), mom(SIS, Y). 
     aunt(X, Y) :- female(X), sis(X, BRO), dad(BRO, Y); female(X), sis(X, SIS), mom(SIS, Y).
