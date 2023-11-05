@@ -15,10 +15,22 @@ class Pc {
 
 class Main {
     public static void main(String[] args){
-        // MVector<int> arr = new MVector<int>(10);
-        MVector<int> arr = new MVector(10);
-        arr.setElementAt(1, 0);
-        System.out.println(arr.get(0));
+        MVector<Integer> arr = new MVector<Integer>(10);
+        arr.append(0);
+        arr.append(1);
+        arr.append(2);
+        arr.append(3);
+        // arr.append(4);
+        arr.pushFront(-2);
+
+        System.out.println(arr.getSize());
+        System.out.println(arr.at(4));
+
+        // arr.removeElementAt(5);
+
+        // System.out.println(arr.at(4));
+        // System.out.println(arr.getSize());
+
         // SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd");
         // String date = a.format(new Date());
         // System.out.println(date);
