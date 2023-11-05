@@ -13,12 +13,12 @@ class Pc {
     public int count;
 }
 
-class MVector {
-    
-}
-
 class Main {
     public static void main(String[] args){
+        // MVector<int> arr = new MVector<int>(10);
+        MVector<int> arr = new MVector(10);
+        arr.setElementAt(1, 0);
+        System.out.println(arr.get(0));
         // SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd");
         // String date = a.format(new Date());
         // System.out.println(date);
