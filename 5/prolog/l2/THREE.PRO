@@ -1,40 +1,49 @@
 domains
     x = real
-    y = real
     z = integer
 database
-    resPoints(x,y)
+    resPoints(x,x)
 predicates
     print()
-    printAll()
+    printPoints()
     empty_database()
     clear_database()
-    read_prov(z)
+    readChoice(z)
     process(z)
     menu()
     error()
-    test()
     repeat()
-    deg90(x,y, x,y, x,y, x,y)
-    cross(x,y, x,y, x,y, x,y, x,y)
-    isCross(x,y, x,y, x,y, x,y)
-    %edges()
-    insert(x,y, x,y, x,y, x,y)
-    point(x,y)
-    insertSquare(x,y, x,y, x,y, x,y)
-    insertRhombus(x,y, x,y, x,y, x,y)
-    length(x,y, x,y, x)
-    sameLength(x,y, x,y, x,y, x,y)
-    isRhombus(x,y, x,y, x,y, x,y)
-    isSquare(x,y, x,y, x,y, x,y)
-    intersections(x,y, x,y, x,y, x,y, x,y, x,y, x,y, x,y, x,y)
-    result(x,y)
-    cosoe(x,y, x,y, x,y, x)
-    onBothSides(x,y, x,y, x,y, x,y, x,x,x,x)
-    output()
-    bye()
+    deg90(x,x, x,x, x,x, x,x)
+    cross(x,x, x,x, x,x, x,x, x,x)
+    isCross(x,x, x,x, x,x, x,x)
+    insert(x,x, x,x, x,x, x,x)
+    point(x,x)
+    insertSquare(x,x, x,x, x,x, x,x)
+    insertRhombus(x,x, x,x, x,x, x,x)
+    length(x,x, x,x, x)
+    sameLength(x,x, x,x, x,x, x,x)
+    isRhombus(x,x, x,x, x,x, x,x)
+    isSquare(x,x, x,x, x,x, x,x)
+    intersections(x,x, x,x, x,x, x,x, x,x, x,x, x,x, x,x, x,x)
+    result(x,x)
+    cosoe(x,x, x,x, x,x, x)
+    onLine(x,x, x,x, x,x, x,x, x,x)
+    inLine(x,x, x,x, x,x)
+    huh(x,x, x)
+    onBothSides(x,x, x,x, x,x, x,x, x,x,x,x)
+    fillDB()
+    maximum(x,x, x)
+    minimum(x,x, x)
 
 clauses
+    maximum(X,Y, Z) :- 
+        X >= Y, Z = X;
+        Y >= X, Z = Y.
+
+    minimum(X,Y, Z) :- 
+        X <= Y, Z = X;
+        Y <= X, Z = Y.
+
     onBothSides(X1,Y1, X2,Y2, A1,B1, A2,B2, ANS1,ANS2,ANS3,ANS4) :-
         cosoe(X1,Y1, X2,Y2, A1,B1, ANS1), ANS1<>0,
         cosoe(X1,Y1, X2,Y2, A2,B2, ANS2), ANS2<>0,
@@ -135,6 +144,19 @@ clauses
         CD1 = X4 - X3, CD2 = Y4 - Y3,
         Res = AB1*CD1 + AB2*CD2, Res = 0.
 
+    onLine(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1) :-
+        cosoe(X1,Y1, X2,Y2, X3,Y3, ANS1), ANS1 = 0, inLine(X1,Y1, X2,Y2, X3,Y3), A1 = X3, B1 = Y3;
+        cosoe(X1,Y1, X2,Y2, X4,Y4, ANS2), ANS2 = 0, inLine(X1,Y1, X2,Y2, X4,Y4), A1 = X4, B1 = Y4;
+        cosoe(X3,Y3, X4,Y4, X1,Y1, ANS3), ANS3 = 0, inLine(X3,Y3, X4,Y4, X1,Y1), A1 = X1, B1 = Y1;
+        cosoe(X3,Y3, X4,Y4, X2,Y2, ANS4), ANS4 = 0, inLine(X3,Y3, X4,Y4, X2,Y2), A1 = X2, B1 = Y2.
+
+    huh(X,Y, A) :-
+        maximum(X, Y, MAX), minimum(X,Y, MIN),
+        A <= MAX, A >= MIN.
+
+    inLine(X1,Y1, X2,Y2, X,Y) :- 
+        huh(X1,X2, X), huh(Y1,Y2, Y).
+
     cross(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1) :- 
         isCross(X1,Y1, X2,Y2, X3,Y3, X4,Y4),
         Temp1 = Y2 - Y1, Temp1 <> 0,
@@ -152,14 +174,13 @@ clauses
         A1 = X3 + (X4 - X3) * N,
         B1 = Y3 + (Y4 - Y3) * N;
 
+        onLine(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1).
+/*
         X1 = X3, Y1 = Y3, A1 = X1, B1 = Y1;
         X1 = X4, Y1 = Y4, A1 = X1, B1 = Y1;
         X2 = X3, Y2 = Y3, A1 = X2, B1 = Y2;
         X2 = X4, Y2 = Y4, A1 = X2, B1 = Y2.
-
-    test() :- write("X = "), readreal(X), nl,
-        write("Y = "), readreal(Y), nl,
-        Z = X / Y, write("Z = "),  write(Z).
+*/
 
     repeat.
     repeat :- repeat.
@@ -168,7 +189,7 @@ clauses
         write("Error"), nl,
         write("Press any button..."), readchar(_), menu.
 
-    read_prov(Vibor):- 
+    readChoice(Vibor):- 
         readint(Vibor);
         error, Vibor = 0,
         menu.
@@ -182,16 +203,15 @@ clauses
         write(" * 2. Exit             * "), nl,
         write(" *********************** "), nl,
         write(" Choose number 1-2 : "),
-        read_prov(Vibor),nl,
+        readChoice(Vibor),nl,
         process(Vibor).
 
 
-    output() :-
-        %write("\033[2J"),
+    fillDB() :-
         result(X,Y),not(resPoints(X,Y)), assert(resPoints(X,Y)),
         fail.
 
-    printAll() :- 
+    printPoints() :- 
         resPoints(X,Y),
         write(" X = "), write(X), write(" "),
         write(" Y = "), write(Y), nl, fail.
@@ -199,24 +219,27 @@ clauses
     print() :-
         makewindow(3,11,3,"Result Points",2,20,18,58), shiftwindow(3),
         clearwindow(),
-        not(printAll()),
+        not(printPoints()),
         write("Press any button..."), readchar(_),
         clear_database,
         removewindow, menu.
         
-
-    bye() :-
-        write("See you again! "),readchar(_),exit.
-
     process(1) :-
-        not(output()),
+        not(fillDB()),
         not(empty_database()),
         clearwindow(), write("We do not look here"),
         not(print()),
+        menu();
+
+        empty_database(), 
+        clearwindow(),
+        write("Wrong input or No points found"), nl,
+        write("Press any button..."), readchar(_),
+        clear_database,
         menu().
 
     process(2) :-
-        bye().
+        write("See you again! "),readchar(_),exit.
 
     empty_database :-
         not(resPoints(_,_)).
