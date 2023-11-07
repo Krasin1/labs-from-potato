@@ -145,10 +145,14 @@ clauses
         Res = AB1*CD1 + AB2*CD2, Res = 0.
 
     onLine(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1) :-
-        cosoe(X1,Y1, X2,Y2, X3,Y3, ANS1), ANS1 = 0, inLine(X1,Y1, X2,Y2, X3,Y3), A1 = X3, B1 = Y3;
-        cosoe(X1,Y1, X2,Y2, X4,Y4, ANS2), ANS2 = 0, inLine(X1,Y1, X2,Y2, X4,Y4), A1 = X4, B1 = Y4;
-        cosoe(X3,Y3, X4,Y4, X1,Y1, ANS3), ANS3 = 0, inLine(X3,Y3, X4,Y4, X1,Y1), A1 = X1, B1 = Y1;
-        cosoe(X3,Y3, X4,Y4, X2,Y2, ANS4), ANS4 = 0, inLine(X3,Y3, X4,Y4, X2,Y2), A1 = X2, B1 = Y2.
+        cosoe(X1,Y1, X2,Y2, X3,Y3, ANS1), ANS1 = 0, 
+        inLine(X1,Y1, X2,Y2, X3,Y3), A1 = X3, B1 = Y3;
+        cosoe(X1,Y1, X2,Y2, X4,Y4, ANS2), ANS2 = 0, 
+        inLine(X1,Y1, X2,Y2, X4,Y4), A1 = X4, B1 = Y4;
+        cosoe(X3,Y3, X4,Y4, X1,Y1, ANS3), ANS3 = 0, 
+        inLine(X3,Y3, X4,Y4, X1,Y1), A1 = X1, B1 = Y1;
+        cosoe(X3,Y3, X4,Y4, X2,Y2, ANS4), ANS4 = 0, 
+        inLine(X3,Y3, X4,Y4, X2,Y2), A1 = X2, B1 = Y2.
 
     huh(X,Y, A) :-
         maximum(X, Y, MAX), minimum(X,Y, MIN),
@@ -175,12 +179,6 @@ clauses
         B1 = Y3 + (Y4 - Y3) * N;
 
         onLine(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1).
-/*
-        X1 = X3, Y1 = Y3, A1 = X1, B1 = Y1;
-        X1 = X4, Y1 = Y4, A1 = X1, B1 = Y1;
-        X2 = X3, Y2 = Y3, A1 = X2, B1 = Y2;
-        X2 = X4, Y2 = Y4, A1 = X2, B1 = Y2.
-*/
 
     repeat.
     repeat :- repeat.
