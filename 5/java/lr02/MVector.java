@@ -3,8 +3,6 @@ import java.util.function.Function;
 import java.util.function.BiConsumer;
 import java.util.*;
 import java.text.*;
-import java.lang.*;
-import java.util.*;
 
 
 public class MVector {
@@ -164,10 +162,10 @@ public class MVector {
             this.capacity = cap * 2;
         else 
             this.capacity = (int)(cap * 1.3);
+        this.array = new Pc[this.capacity];
     }
 
     public void printAll() {
-        System.out.println("");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println("* Характеристики компьютера:");
         System.out.println("* 1)ID  2)Производитель  3)Процессор  4)Частота  5)ОЗУ  6)HDD  7)Дата выхода  8)Цена  9)Кол-во ");
@@ -180,6 +178,24 @@ public class MVector {
                 System.out.print(format.format(this.array[i].release) + "  8)");
             System.out.println(this.array[i].cost + "  9)" + this.array[i].count);
         }
+    }
+
+    public void printSingle(int index) {
+        if (index < 0 || index >= this.size) 
+            throw new NoSuchElementException("Wrong index");
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println("\n* Характеристики компьютера:");
+        System.out.println("* 1)ID  2)Производитель  3)Процессор  4)Частота  5)ОЗУ  6)HDD  7)Дата выхода  8)Цена  9)Кол-во ");
+
+        System.out.println("* At index: " + index);
+        System.out.print("1)" + this.array[index].id + "  2)" + this.array[index].vendor + "  3)" + this.array[index].cpu + "  4)" );
+        System.out.print(this.array[index].freq + "  5)" + this.array[index].ram + "  6)" + this.array[index].storage + " 7)");
+        if (this.array[index].release == null) 
+            System.out.print("null  8)");
+        else    
+            System.out.print(format.format(this.array[index].release) + "  8)");
+        System.out.println(this.array[index].cost + "  9)" + this.array[index].count);
     }
 
     private int size;

@@ -1,14 +1,12 @@
 import java.util.function.Function;
 import java.util.function.BiConsumer;
 import java.util.Date;
-import java.util.*;
 import java.text.*;
-import java.lang.*;
 
 class Main {
     public static void main(String[] args){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        //*********************************
+
         Pc a = new Pc();
         a.id = 1;
         a.vendor = "a";
@@ -21,7 +19,7 @@ class Main {
         } catch (ParseException e) { e.printStackTrace(); }
         a.cost = 32.5;
         a.count = 5;
-        //*********************************
+
         Pc b = new Pc();
         b.id = 2;
         b.vendor = "b";
@@ -34,7 +32,7 @@ class Main {
         } catch (ParseException e) { e.printStackTrace(); }
         b.cost = 55.5;
         b.count = 4;
-        //*********************************
+
         Pc c = new Pc();
         c.id = 3;
         c.vendor = "c";
@@ -47,18 +45,25 @@ class Main {
         } catch (ParseException e) { e.printStackTrace(); }
         c.cost = 99.9;
         c.count = 1;
-        //*********************************
-        Function<Pc, String> g = x -> Pc.getVendor(x);
-        BiConsumer<Pc, String> s = (pc, val) -> Pc.setVendor(pc, val);
-        //********************************
+
         MVector arr = new MVector(10);
         arr.append(c);
         arr.append(b);
         arr.append(a);
-        //*********************************
+
+        System.out.println("*********************************");
         arr.printAll();
+        arr.removeElementAt(0);
+        arr.printAll();
+        arr.append(c);
+
+        Function<Pc, String> g = x -> Pc.getVendor(x);
+        BiConsumer<Pc, String> s = (pc, val) -> Pc.setVendor(pc, val);
+
+        System.out.println("*********************************");
         Integer index = arr.findCpu("i7");
-        System.out.println(index);
+        System.out.println("Поиск по процессору: i7");
+        arr.printSingle(index);
 
         // arr.sort(arr.getArray(), 0, arr.getSize() - 1, g, s);
         arr.sortRelease();
@@ -66,8 +71,7 @@ class Main {
         arr.printAll();
         index = arr.findCpu("i7");
         System.out.println(index);
-        //*********************************
-        
+        System.out.println("*********************************");
     }
 
 }

@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Date;
 
 class Pc {
     public Integer id;
@@ -15,9 +15,13 @@ class Pc {
 		return a.id;
 	}
 	public static String getVendor(Pc a) {
+        if (a.vendor == null)
+            return "null";
 		return a.vendor;
 	}
 	public static String getCpu(Pc a) {
+        if (a.cpu == null)
+            return "null";
 		return a.cpu;
 	}
 	public static Double getFreq(Pc a) {
