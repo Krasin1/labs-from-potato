@@ -3,6 +3,7 @@ domains
     z = integer
 database
     resPoints(x,x)
+    check(z)
 predicates
     print()
     printPoints()
@@ -145,6 +146,14 @@ clauses
         Res = AB1*CD1 + AB2*CD2, Res = 0.
 
     onLine(X1,Y1, X2,Y2, X3,Y3, X4,Y4, A1,B1) :-
+        cosoe(X1,Y1, X2,Y2, X3,Y3, ANS1), ANS1 = 0, inLine(X1,Y1, X2,Y2, X3,Y3), 
+        cosoe(X1,Y1, X2,Y2, X4,Y4, ANS2), ANS2 = 0, inLine(X1,Y1, X2,Y2, X4,Y4), 
+        assert(check(1)),
+
+        cosoe(X3,Y3, X4,Y4, X1,Y1, ANS3), ANS3 = 0, inLine(X3,Y3, X4,Y4, X1,Y1), 
+        cosoe(X3,Y3, X4,Y4, X2,Y2, ANS4), ANS4 = 0, inLine(X3,Y3, X4,Y4, X2,Y2), 
+        assert(check(1)),
+
         cosoe(X1,Y1, X2,Y2, X3,Y3, ANS1), ANS1 = 0, 
         inLine(X1,Y1, X2,Y2, X3,Y3), A1 = X3, B1 = Y3;
         cosoe(X1,Y1, X2,Y2, X4,Y4, ANS2), ANS2 = 0, 
@@ -215,9 +224,19 @@ clauses
         write(" Y = "), write(Y), nl, fail.
 
     print() :-
+        not(check(1)),
         makewindow(3,11,3,"Result Points",2,20,18,58), shiftwindow(3),
         clearwindow(),
         not(printPoints()),
+        write("Press any button..."), readchar(_),
+        clear_database,
+        removewindow, menu;
+        
+        check(1),
+        makewindow(3,11,3,"Result Points",2,20,18,58), shiftwindow(3),
+        clearwindow(),
+        not(printPoints()),nl,
+        write(" !!! Infinite number of points !!! "), nl, nl,
         write("Press any button..."), readchar(_),
         clear_database,
         removewindow, menu.
@@ -243,6 +262,7 @@ clauses
         not(resPoints(_,_)).
 
     clear_database:-
+        retract(check(_)),
         retract(resPoints(_,_)),
         fail.
     clear_database:-!.

@@ -1,4 +1,3 @@
-
 import java.util.function.Function;
 import java.util.function.BiConsumer;
 import java.util.*;
@@ -15,6 +14,7 @@ public class MVector {
 
     public void append(Pc obj) {
         ensureCapacity(this.size + 1);
+
         this.array[this.size++] = obj;
     }
 
@@ -162,7 +162,13 @@ public class MVector {
             this.capacity = cap * 2;
         else 
             this.capacity = (int)(cap * 1.3);
-        this.array = new Pc[this.capacity];
+
+        Pc[] temp = new Pc[this.capacity];
+
+        for(int i = 0; i < size; ++i) 
+            temp[i] = this.array[i];
+
+        this.array = temp;
     }
 
     public void printAll() {
