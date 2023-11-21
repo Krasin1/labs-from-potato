@@ -1,56 +1,133 @@
+nowarnings
+%trace
 domains
     x = real
-    z = integer
     list = real*
     list_lists = list*
     file = text_file
-database
-    
 predicates
-    write_list(list)
-    read_list(list, list_lists)
+    sort()
 
-    append(list, list, list)
-    last(x, list)
-    make_stacks(x, list_lists, list_lists)
+    min(list_lists, x)
+    min(list_lists, x, x)
+    replace(list_lists,list,list,list_lists)
+    remove(list,list_lists,list_lists)
+    remove(x,list,list)
 
+    emptyFile(list)
+    readList(list)
+    writeList(list)
+    writeStack(list_lists)
+
+    toStack(list, list_lists)
+    toStack(list, list_lists, list_lists)
+
+    result(list_lists, list)
+    result(x, list_lists, list)
+
+    pushToPile(x, list, list)
+    findLessX(x, list_lists, list)
+    pushX(x, list_lists, list_lists)
+    popX(x,list_lists, list_lists)
+    findX(x, list, list_lists)
 clauses
-    append([], List2, List2).
-    append([Head|Tail], List2, [Head|TailResult]):-
-        append(Tail, List2, TailResult).
+    replace([], _, NewValue, [NewValue]):-!.
+    replace([OldValue|Tail], OldValue, NewValue, [NewValue|Tail]).
+    replace([Head|Tail], OldValue, NewValue, [Head|ReplacedTail]):-
+      replace(Tail, OldValue, NewValue, ReplacedTail).
 
-    last(X, [X]).
-    last(X, [_|Z]) :- last(X,Z).
+    remove(_,[],[]).
+    remove(Head,[Head|Tail],Tail) :- !.
+    remove(X,[Head|Tail],[Head|Tail2]) :- remove(X,Tail,Tail2).
+
+    min([[Head|_]|Tail], Min) :-
+        min(Tail, Head, Min).
+    min([], Min, Min).
+    min([[Head|_]|Tail], Old, Min) :- 
+        Old < Head, min(Tail, Old, Min);
+        Old >= Head, min(Tail, Head, Min).
+
+    emptyFile(List) :-
+        not(List = []);
+        write("Error: empty file"),nl,exit.
+
+    readList([Head|Tail]):-
+        readreal(Head),
+        readList(Tail);
+        readchar(_),
+        write("Error while reading file"), exit.
+    readList([]).
+
+    writeList([]):-nl,!.
+    writeList([Head|Tail]):-
+        write(Head), write(" "), writeList(Tail).
+
+    writeStack([]):-nl,!.
+    writeStack([Head|Tail]):-
+        writeList(Head), writeStack(Tail).
+
+    popX(X,NewStack, Stack) :-
+        findX(X,Pile, Stack),
+        remove(X, Pile, NewPile),
+        not(NewPile = []), replace(Stack, Pile, NewPile, NewStack),!;
+        findX(X,Pile, Stack),
+        remove(Pile, Stack, NewStack),!.
     
-    read_list([X|T], NewList) :-
-        readreal(X),
-        make_stacks(X, List, NewList),
-        read_list(T, List).
+    findX(X,Pile, [[Head|T]|Tail]) :-
+        X = Head, Pile = [Head|T],!;
+        findX(X, Pile, Tail).
+    
+    result(Stack, List) :-
+        min(Stack, Min),
+        result(Min, Stack, List).
+    result(Min, Stack, [ResHead|ResTail]) :-
+        popX(Min, NewStack, Stack),
+        not(NewStack = []),
+        ResHead = Min,
+        min(NewStack, NewMin),
+        result(NewMin, NewStack, ResTail);
+        ResHead = Min,
+        result(_,[],[]).
+    result(_,[],[]):-!.
 
-    read_list([], NewList).
+    findLessX(X, [ [Head|T] | Tail], Pile) :-
+        X <= Head, Pile = [Head|T],!;
+        findLessX(X, Tail, Pile).
+    findLessX(_, [], []):-!.
 
-    write_list([]):-!.
-    write_list([Head|Tail]):-
-        write(Head), nl, write_list(Tail).
+    pushX(X, Stack, NewStack) :-
+        findLessX(X, Stack, OldPile),
+        pushToPile(X, OldPile, NewPile),
+        replace(Stack, OldPile, NewPile, NewStack).
 
-    make_stacks(X, [[Head|Tail]|TAILL], NewList) :-
-        last(LAST, [Head|Tail]), LAST >= X, append([Head|Tail], [X], [NewHead|NewTail]),
-        NewList = [[NewHead|NewTail] | TAILL];
+    toStack(List, NewStack):-
+        toStack(List,[],NewStack).
 
-        make_stacks(X, TAILL, NewList).
+    toStack([Head|Tail], Stack, NewStack) :-
+        pushX(Head, Stack, NS),
+        toStack(Tail,NS,NewStack).
+    toStack([],NewStack, NewStack).
 
-    make_stacks(X, [[Head|Tail]|[]], NewList) :-
-        append([Head|Tail], [X], [NewHead|NewTail]),
-        NewList = [[NewHead|NewTail] | []].
-        
-        
-        
+    pushToPile(X, [Head|Tail], List) :-
+        X > Head, List = [];
+        X <= Head, List = [X|[Head|Tail]].
+    pushToPile(X, [], [X]).
+
+    sort() :-
+        clearwindow, 
+        existfile("C:/LABS/L3/num.txt"),!,
+        openread(text_file, "C:/LABS/L3/num.txt"),
+        readdevice(text_file),
+        readList(List),
+        emptyFile(List),
+        writeList(List),
+        toStack(List,Stack),
+        %writeStack(Stack),
+        result(Stack, Res),
+        write("Sorted:"),nl,
+        writeList(Res),
+        closefile(text_file);
+        write("cant open file"),nl.
         
 goal
-    existfile("C:/LABS/L3/num.txt"),!,
-    openread(text_file, "C:/LABS/L3/num.txt"),
-    readdevice(text_file),
-    read_list(Input_list, NewList),
-    %write_list(Input_list),
-    closefile(text_file);
-    write("cant open file"),nl.
+    sort.

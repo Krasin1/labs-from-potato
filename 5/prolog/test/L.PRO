@@ -8,7 +8,6 @@ predicates
     goodBroyden(real, real, real,real,real,real,real, real,real,real,real, integer)
     startBroyden(real, real, real,real,real,real,real)
     inputPoint(real, real)
-    test(integer, real,real,real,real,real,real,real,real,real,real,real,real)
     revJac(real,real,real,real, real,real,real,real)
     kostylb(real,real)
     choose(real,real,real,real,real, real,real,real,real)
@@ -44,7 +43,7 @@ clauses
         NextFn2 = ((M * Xn1) + (R * Xn2)) - 1,
         DeltaXn1 = Xn1 - X, DeltaXn2 = Xn2 - Y,
         DeltaNextFn1 = NextFn1 - Fn1, DeltaNextFn2 = NextFn2 - Fn2,
-          %test(Cnt, Fn1, Fn2, Xn1, Xn2, X, Y, Jac11, Jac12, Jac21, Jac22, DeltaXn1, DeltaXn2),
+
          %numerator
         MUL1 = (Jac11*DeltaNextFn1 + Jac12*DeltaNextFn2),
         MUL2 = (Jac21*DeltaNextFn1 + Jac22*DeltaNextFn2),
@@ -102,19 +101,6 @@ clauses
     answer(X, Y) :-
         writef("X = %0.3f", X), nl,
         writef("Y = %0.3f", Y), nl, nl.
-
-    test(Cnt, Fn1, Fn2, Xn1, Xn2, X,Y, RevJac11, RevJac12, RevJac21, RevJac22, DeltaXn1, DeltaXn2) :-
-        clearwindow(),
-        write("RevJac:"), nl,
-        write(RevJac11),write(" "),write(RevJac12),nl,write(RevJac21),write(" "),write(RevJac22),nl,
-        write("Func:"),nl,
-        write(" "), write(Fn1), write(" "), write(Fn2), nl,
-        write("Xn + X:"),nl,
-        write(Xn1), write(" "), write(X),nl, write(Xn2), write(" "), write(Y), nl,
-        write("DeltaX:"),nl,
-        write(DeltaXn1), write(" "), write(DeltaXn2), write(" "), nl,
-        write("Count = "), write(Cnt), nl,
-        readchar(_).
 
     startBroyden(X,Y, X0,Y0,A,M,R) :-
         jacobian0(X,Y,X0,Y0,A,M,R, X11,X12,X21,X22),
