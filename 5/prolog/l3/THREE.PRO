@@ -1,5 +1,3 @@
-nowarnings
-%trace
 domains
     x = real
     list = real*
