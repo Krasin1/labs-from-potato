@@ -24,17 +24,15 @@ predicates
     clear_database()
     bruteforce(slist)
     bruteforce(char, slist,slist,slist)
-    print_all()
     minimum(way,way,way) 
     min_in_list(ways, way)
     to_list(ways)
-    count(slist, char, integer)
     remove(char, slist,slist)
     start()
 
  
 clauses
-    %edge('a','b', 3).
+    edge('a','b', 3).
     edge('a','c', 3).
     edge('b','c', 2).
     edge('c','e', 4).
@@ -60,19 +58,11 @@ clauses
         edge(Head, _, _),correct_list(Tail);
         edge(_, Head, _),correct_list(Tail).
 
-    count([], _, 0).
-    count([X|Tail], X, N) :-
-        count(Tail, X, N1), N = N1 + 1.
-    count([_|Tail], X, N) :-
-        count(Tail, X, N).
-
     member(H,[H|_]).
     member(H,[_|Tail]):-member(H,Tail).
      
     prolong(w(Length,[Temp|Tail]),w(NewLength,[New,Temp|Tail])):-
-        %move(Temp,New,C),not(member(New,[Temp|Tail])),NewLength=Length+C.
-        %move(Temp,New,C),NewLength=Length+C.
-        move(Temp,New,C),count([Temp|Tail],New,Count), Count < 3, NewLength=Length+C.
+        move(Temp,New,C),not(member(New,[Temp|Tail])),NewLength=Length+C.
     
     place([],SortedWays,SortedWays).
     place([Way|Tail],PrevWays,SortedWays):-
@@ -106,15 +96,9 @@ clauses
         search_bst(First,Head, w(Length, Way)),
         check_cities(TrueList,Way),
         assertz(result(w(Length,Way))),
-        %NextTail = [H|T], remove(H, TrueList, NewList),
-        %bruteforce(H,NewList, T, TrueList);
         bruteforce(First,Tail, NextTail, TrueList);
         
         bruteforce(First,Tail, NextTail, TrueList).
-
-    print_all() :-
-        result(w(_, Way)),
-        show_answer(Way),nl,readchar(_),fail.
 
     to_list([]) :- not(result(_)).
     to_list([Head|Tail]) :-
@@ -142,17 +126,14 @@ clauses
 
     start :-
         clearwindow, clear_database,
-        List = ['a', 'e', 'b'],
+        List = ['a', 'z', 'b'],
         correct_list(List),
-        %write("lol"),nl,
         bruteforce(List),
-        %print_all(),
         to_list(ResultList),
         min_in_list(ResultList, w(Length,Way)),
         show_answer(Way),nl,write("Length: "), write(Length),nl,
         write("Press any key"),nl,readchar(_),
-        clearwindow, clear_database.
-
+        clear_database.
 
 goal
     start.
