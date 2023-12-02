@@ -4,6 +4,7 @@
     <title>Pictures</title>
 </head>
 <body>
+<a href="index.jsp">На главную</a>
     <script>
         function cars() {
             for(var i = 1; i <= 2; i++) {

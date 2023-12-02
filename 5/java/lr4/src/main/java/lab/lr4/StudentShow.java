@@ -32,7 +32,8 @@ public class StudentShow extends HttpServlet {
         }
 
         String sql = "select * from person";
-        try(Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/students", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)) {
+        try(Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studetns", "user", "qwer");
+                PreparedStatement prep = con.prepareStatement(sql)) {
             ResultSet res = prep.executeQuery();
             out.println("<form action=\"student\">");
             while(res.next()) {

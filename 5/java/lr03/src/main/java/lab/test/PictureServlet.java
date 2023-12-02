@@ -9,7 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 
-@WebServlet(name = "pictureServlet", value = "/picture-servlet")
+@WebServlet(value = "/picture-servlet")
 public class PictureServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab3 servlet</title>
+  <title>Lab4 jdbc</title>
 </head>
 <body>
 

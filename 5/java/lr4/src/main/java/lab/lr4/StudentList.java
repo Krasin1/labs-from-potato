@@ -17,7 +17,7 @@ public class StudentList extends HttpServlet {
 
     public void createTable(PrintWriter out, String id, String table) {
         String sql = "select * from " + table + " where id = " + id;
-        try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/students", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
+        try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studetns", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
             ResultSet res = prep.executeQuery();
             out.println("<tr>");
             out.println("<td>" + table + "</td>");

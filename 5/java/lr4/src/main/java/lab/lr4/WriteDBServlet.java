@@ -30,7 +30,6 @@ public class WriteDBServlet extends HttpServlet {
         }
         for(String name : paramNames) {
             String value = request.getParameter(name);
-            // out.println(value + " " + value.length() + "<br>");
             if (value.equals("null")) { value = null;}
             String index = name.replace("mark", "");
             index = index.substring(index.indexOf("_") + 1 ,index.length());
@@ -46,7 +45,7 @@ public class WriteDBServlet extends HttpServlet {
                 sql = "update" + " math " + "set math.`" + index + ".02.2024` = ? where math.id=" + id;
             }
             
-            try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/students", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
+            try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studetns", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
                 prep.setString(1, value);
                 prep.executeUpdate();
                 prep.close();

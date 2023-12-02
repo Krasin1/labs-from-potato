@@ -17,7 +17,7 @@ public class TeacherServlet extends HttpServlet {
 
     public void createTable(PrintWriter out, String table) {
         String sql = "select * from person cross join " + table + " on person.id="+table+".id";
-        try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/students", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
+        try (Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/studetns", "user", "qwer");            PreparedStatement prep = con.prepareStatement(sql)){
             ResultSet res = prep.executeQuery();
             while(res.next()){
                 out.println("<tr>");
@@ -86,7 +86,7 @@ public class TeacherServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<a href=\"/index.jsp\">На главную</a>");
         out.println("<style>table,td,tr {border:1px solid black;text-align:center;}</style>");
-        // out.println("<h1>Преподаватель математики</h1>");
+        out.println("<h1>Преподаватель математики</h1>");
             out.println("<form action=\"write\"><table><tr><td></td>");
             for(int i = 1; i <=10; ++i) {
                 out.println("<td>" + i + ".02.2024</td>");
