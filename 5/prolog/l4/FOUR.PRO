@@ -1,19 +1,18 @@
-%trace
-domains
-    slist = char*
-    list = real*
-    way = w(real,slist)
-    ways = way*
-
-database
-    result(way)
- 
-predicates
-    edge(char,char,real)
-    move(char,char,real)
-    prolong(way,way)
-    place(ways,ways,ways)
-    placeone(way,ways,ways)
+domains                                    
+    slist = char*                          
+    list = real*                           
+    way = w(real,slist)                    
+    ways = way*                            
+                                           
+database                                   
+    result(way)                            
+                                           
+predicates                                 
+    edge(char,char,real)                   
+    move(char,char,real)                   
+    prolong(way,way)                       
+    place(ways,ways,ways)                  
+    placeone(way,ways,ways)                
     search_bst(char,char, way)
     bst(ways,char,way)
     show_answer(slist)
@@ -45,6 +44,11 @@ clauses
     edge('h','g', 5).
     edge('z','j',150).
     edge('z','h',150).
+    edge('x','b',13).
+    edge('x','y',15).
+    edge('y','1',21).
+    edge('1','2',16).
+    edge('2','g',17).
 
     move(A,B,C):-edge(A,B,C);edge(B,A,C).
 
@@ -126,7 +130,7 @@ clauses
 
     start :-
         clearwindow, clear_database,
-        List = ['a', 'z', 'b'],
+        List = ['j','z','d','2','1','b'],
         correct_list(List),
         bruteforce(List),
         to_list(ResultList),
