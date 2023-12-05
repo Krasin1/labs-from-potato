@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Параметры</title>
+</head>
+<body>
+    <a href="index.html">На главную</a>
+    <?php
+        echo "<h2>1. IP-адрес удаленного компьютера, метод пересылки данных: "; 
+        echo $_SERVER['REMOTE_ADDR'] . ", " . $_SERVER['REQUEST_METHOD']."</h2>";
+        echo "<h2>2. Программное обеспечение сервера, протокол передачи данных: ";
+        echo $_SERVER['SERVER_SOFTWARE'] . ", " . $_SERVER['SERVER_PROTOCOL']."</h2>";
+        echo "<h2>3. Каталог для хранения документов на сервере, IP-адрес сервера: ";
+        echo $_SERVER['DOCUMENT_ROOT'] . ", " . $_SERVER['SERVER_ADDR']."</h2>"; 
+        echo "<h2>4. Почтовый адрес администратора сети, имя хост-компьютера: "; 
+        echo $_SERVER['SERVER_ADMIN'] . ", " . $_SERVER['HTTP_HOST']."</h2>";
+    ?>
+</body>
+</html>

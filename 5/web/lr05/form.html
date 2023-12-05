@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Форма</title>
+</head>
+<body>
+    <?php 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+            $HOST = 'localhost';
+            $USER = 'user';
+            $PASS = 'qwer';
+            $DB_NAME = 'users_1lab';
+
+            $connect = mysqli_connect($HOST, $USER, $PASS, $DB_NAME);
+            if(!$connect) {
+                die('Не могу подключится: '.mysqli_connect_errno().", ".mysqli_connect_error());
+            }
+
+            if (strlen(trim($_POST["login"])) > 2 && strlen(trim($_POST["login"])) < 16) { 
+                if (strlen(trim($_POST["password"])) > 2 && strlen(trim($_POST["password"])) < 16) { 
+                    $login = trim($_POST['login']);
+                    $hashedPass = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+                    $country = $_POST['country'];
+                    $mail = $_POST['mail'];
+                    $age = $_POST['age'];
+                    $hobby = $_POST['hobby'];
+                    
+                    $query = "insert into form (login, password, country, mail, age, hobby) values ('$login', '$hashedPass', '$country', '$mail', '$age', '$hobby')";
+                    $sql = mysqli_query($connect, $query);
+                    if (!$sql) {
+                        die("Не удалось выполнить запрос".mysqli_error($connect) );
+                    }
+                    mysqli_close($connect);
+              } else {echo "<script>alert(\"Длина пароля должна быть от 3 до 15 символов.\")</script>"; }
+          } else { echo "<script>alert(\"Длина логина должна быть от 3 до 15 символов.\")</script>"; }
+      }
+    ?>
+
+          
+    <footer>
+        <form action="" method="post">
+            <h3 align="center"> Анкета пользователя</h3>
+            <table>
+                <tr>
+                    <td> Логин: </td>
+                    <td> <input type="text" name="login" minlength="3" maxlength="15" size="30" required></td>
+                </tr>
+                <tr>
+                    <td> Пароль: </td>
+                    <td> <input type="password" name="password" minlength="3" maxlength="15" size="30" required></td>
+                </tr>
+                <tr>
+                    <td> Город: </td>
+                    <td> <select name="country">
+                            <option value="Москва"> Москва
+                            <option selected=2 value="Санкт-Петербург"> Санкт-Петербург
+                            <option value="Казань"> Казань
+                            <option value="Мурманск"> Мурманск
+                            <option value="Другой..."> Другой...
+                        </select> </td>
+                </tr>
+                <tr>
+                    <td> Почта: </td>
+                    <td> <input type="email" name="mail" size="30"></td>
+                </tr>
+            </table>
+            <h4> Укажите свою возрастную группу </h4>
+            <input type="radio" name="age" value="child"> 7-12 лет
+            <input type="radio" name="age" value="junior" checked> 13-20 лет
+            <input type="radio" name="age" value="adult"> от 20 лет
+
+            <h4> Укажите свои увлечения </h4>
+            <input type="checkbox" name="hobby" value="computers"> Компьютеры
+            <input type="checkbox" name="hobby" value="art"> Литература
+            <input type="checkbox" name="hobby" value="music"> Музыка
+            <input type="checkbox" name="hobby" value="avto"> Автомобили
+            <input type="checkbox" name="hobby" value="sport"> Спорт
+            <br>
+            <input type="submit" value="Отправить">
+            <input type="reset" value="Очистить">
+
+        </form>
+    </footer>
+</body>
+</html>

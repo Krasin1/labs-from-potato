@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Средний балл</title>
+</head>
+<body>
+    <a href="index.html">На главную</a>
+    <?php
+        $error = null;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+            $surname = $_POST['family']; $markProg = $_POST['markProg']; $markMath = $_POST['markMath']; $markPhys= $_POST['markPhys'];
+            $error = empty($surname) || empty($markProg) || empty($markMath) || empty($markPhys);
+        }
+        if ($error == true || is_null($error)) { ?>
+            <form action="" method="post"> 
+                <p><input type="text" name="family" value="" placeholder="Фамилия" required="required"></p>
+                <p>Оценка по дисциплине «Программирование»
+                <input type="number" value="<?= $markProg ?>" name="markProg" min="2" max="5" required="required"></p>
+                <p>Оценка по дисциплине «Математика»
+                <input type="number" value="<?= $markMath ?>" name="markMath" min="2" max="5" required="required"></p>
+                <p>Оценка по дисциплине «Физика»
+                <input type="number" value="<?= $markPhys ?>" name="markPhys" min="2" max="5" required="required"></p>
+                <?php
+                if ($error == true)
+                    echo "<p>Ошибка отправки! Некоторые данные не были введены! Попробуйте снова!</p>";
+                ?>
+                <p><input type="submit" value="Отправить" ></p>
+            </form>
+    <?php
+        }
+        else { ?>
+            <h2>Фамилия: <?= $surname ?></h2>
+            <h2>Оценка по дисциплине «Программирование»: <?= $markProg ?></h2> 
+            <h2>Оценка по дисциплине «Математика»: <?= $markMath ?></h2> 
+            <h2>Оценка по дисциплине «Физика»: <?= $markPhys ?></h2> 
+            <h2>Средний балл: <?= ( $markProg + $markMath + $markPhys ) / 3?></h2>
+            <h2>Cтипендия: <?= ( $markProg > 3 && $markMath > 3 && $markPhys > 3 ? 'Есть' : 'Нет' ) ?></h2>
+    <?php
+        } ?>
+</body>
+</html>

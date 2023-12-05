@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Первая бд</title>
+</head>
+
+<body>
+    <?php 
+        $HOST = 'localhost';
+        $USER = 'user';
+        $PASS = 'qwer';
+        $DB_NAME = 'SocialSite';
+
+        $connect = mysqli_connect($HOST, $USER, $PASS, $DB_NAME);
+        if(!$connect) {
+            die('Не могу подключится: '.mysqli_connect_errno().", ".mysqli_connect_error());
+        }
+
+        $query = "select id, nickname, login, email, status from Users";
+        $sql = mysqli_query($connect, $query);
+        if (!$sql) {
+            die("Не удалось выполнить запрос".mysqli_error($connect) );
+        }
+
+        while ($result = mysqli_fetch_array($sql)) {
+            echo "<p>Номер пользователя {$result['id']}".'<p>';
+            echo "<p>Имя: {$result['nickname']}".'<p>';
+            echo "<p>Логин: {$result['login']}".'<p>';
+            echo "<p>E-mail: {$result['email']}".'<p>';
+            echo "<p>Статус: {$result['status']}".'<p>'.'<br>';
+        }
+        mysqli_close($connect);
+    ?>
+</body>
+</html>

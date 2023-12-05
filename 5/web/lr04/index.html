@@ -7,18 +7,34 @@
 </head>
 
 <body>
-    <?php
-        echo "Дата : ";
-        echo date("Y/m/d");
-        echo "<br><br>";
-    ?>
-    <form name="sum">
-        <input type="text" name="var1" placeholder="0">
-        <input type="text" name="var2" placeholder="0">
-        <button onclick="widnow.location.href='/test.php?';">Сложение</button>   
-        <br>
-    </form>
-    <a href="https://google.com"> google.com </a>
+    <p>
+        <?php
+            echo "Дата : ";
+            echo date("Y/m/d");
+        ?>
+    </p>
+
+    <p><form action="sum.html">
+        1) Сложение переданных в параметрах двух числел в php-файле<br>
+        <input type="number" step="any" style="width:90px" name="var1" placeholder="Число">
+        <input type="number" step="any" style="width:90px" name="var2" placeholder="Число">
+        <button>Сложение</button>   
+    </form></p>
+
+    <p><form action="parameters.html">
+        2) Параметры Web-сервера<br>
+        <button>Показать</button>   
+    </form></p>
+    
+    <p><form action="marks.html">
+        3) Средний балл студента<br>
+        <button>Перейти</button>
+    </form></p>
+
+    <p><form action="word.html">
+        4) Кол-во слов в строке<br>
+        <button>Перейти</button>
+    </form></p>
 
 </body>
 
