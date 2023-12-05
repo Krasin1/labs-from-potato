@@ -1,0 +1,6 @@
+only_fans(1,"B","U6","Peugeot",1,18)
+only_fans(2,"B","U6","Peugeot",1,18)
+only_fans(282,"Valeo","715222","",14,23329)
+only_fans(283,"Valeo","715222","715222, Ventilyator salona",5,27278)
+only_fans(284,"Peugeot-Citroen","6441Z7","Avtozapchast'",1,57569)
+last_id(284)
