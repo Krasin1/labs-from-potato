@@ -1,0 +1,125 @@
+* {
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    font-family: "Share Tech Mono";
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #181818;
+}
+h2 {
+    position: relative;
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Oxanium';
+    color:#ffda62;
+    margin: 0;
+}
+p {
+    font-family: 'Oxanium';
+    font-weight: 300;
+    text-align: center;
+    font-size: 30px;
+    color:#c49d1d;
+    margin: 0;
+}
+
+.hintBar {
+    background: rgb(104, 85, 0);
+    border: 0.125rem solid;
+    padding: 8px;
+    border-radius: 10px;
+    display:inline-block;
+    color: rgb(184, 150, 0);
+}
+
+.errorBar {
+    background: rgb(104, 0, 0);
+    border: 0.125rem solid;
+    padding: 8px;
+    border-radius: 10px;
+    display:inline-block;
+    color: rgb(184, 0, 0);
+}
+
+.successBar {
+    background: rgb(6, 104, 0);
+    border: 0.125rem solid;
+    padding: 8px;
+    border-radius: 10px;
+    display:inline-block;
+    color: rgb(6, 184, 0);
+}
+
+.container .form-group {
+    clear:both; 
+    text-align:right;
+}
+.container .form-group label {
+    display: inline;
+    float: left;
+    padding-left: 20%;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color:white;
+}
+.container .form-group input {
+    display: inline;
+    margin-right: 28%;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* width: 30px; */
+    height: 20px;
+}
+
+.GTFObutton {
+    font-family: Share Tech Mono;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 0.75rem 1.1875rem;
+    cursor: pointer;
+    color: #e11900;
+    background: rgba(0,0,0,.3);
+    border: 0.125rem solid;
+    border-left: 0.5rem solid;
+    margin-top: 2%;
+    outline: none;
+}
+
+/* Register animations */
+.container {
+    width: 50%;
+    height: 30%;
+    margin: auto;
+    text-align: center;
+
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: samefadeIn;
+    animation-name: samefadeIn;
+}
+
+@-webkit-keyframes samefadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes samefadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

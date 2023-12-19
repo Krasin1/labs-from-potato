@@ -1,0 +1,113 @@
+.error_message{
+    background: darkred;
+    border: 0.125rem solid;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    text-align: center;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.success_message{
+    background: darkgreen;
+    border: 0.125rem solid;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: lawngreen;
+    text-align: center;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content ;
+}
+
+body {
+    background: bisque;
+}
+
+.button-primary {
+    min-height: 40px;
+    padding: 0 15px;
+    color: #FFF;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    cursor: pointer;
+    background: #505050;
+    border-color: #000;
+    box-shadow: 2px 2px 1px black;
+}
+
+.button-primary:hover{
+    color: #FFF;
+    background: brown;
+    border-color: brown
+}
+
+.table-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: 1px solid #DADADA;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, .08);
+}
+
+.table-row {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    border-bottom: 1px solid #dadada;
+}
+
+.heading {
+    background-color: #ececec;
+    color: #3e3e3e;
+    font-weight: bold;
+}
+
+.row-item {
+    display: flex;
+    flex: 1;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.15s ease-in-out;
+}
+
+.row-sub-container {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+}
+
+.row-sub-container .row-item {
+    border-bottom: 1px solid #dadada;
+}
+
+.table-row:last-child,
+.row-sub-container .row-item:last-child {
+    border-bottom: 0;
+}
+
+.input {
+    height: 30px;
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
