@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Форма</title>
 </head>
-<body>
+<body bgcolor="#f05fbb">
     <?php 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
             $HOST = 'localhost';
@@ -25,8 +25,8 @@
                     $mail = $_POST['mail'];
                     $age = $_POST['age'];
                     $hobby = $_POST['hobby'];
-                    
-                    $query = "insert into form (login, password, country, mail, age, hobby) values ('$login', '$hashedPass', '$country', '$mail', '$age', '$hobby')";
+
+                    $query = "INSERT INTO `form`(`login`, `password`, `country`, `mail`, `age`, `hobby`) VALUES ('$login','$hashedPass','$country','$mail','$age','$hobby')";
                     $sql = mysqli_query($connect, $query);
                     if (!$sql) {
                         die("Не удалось выполнить запрос".mysqli_error($connect) );
@@ -37,6 +37,82 @@
       }
     ?>
 
+    <center>
+        <img src="images/gif.gif" alt="gif" width="150" height="150">
+    </center>
+    <hr width="85%" size="10" color="green">
+    <table border="2" width="80%" align="center" bgcolor="#f5f5f5">
+        <tr>
+            <th><a href="index.html">Главная</a></th>
+            <th bgcolor="Lime"><a href="https://hermitagemuseum.ru/">Государственный
+                    Эрмитаж </a></th>
+            <th bgcolor="Cyan"><a href="https://www.spb-guide.ru/admiraltejstvo.htm">Здание
+                    главного Адмиралтейства </a></th>
+            <th bgcolor="DeepPink"><a href="https://petropavlovskaya.org/">Петропавловская
+                    крепость </a></th>
+            <th bgcolor="Gold"><a href="https://mos-holidays.ru/spb/dostoprimechatelnosti/smolnyjmonastyr/">Смольный
+                    монастырь </a></th>
+        </tr>
+    </table>
+    <center>
+        <p>
+            <font face="SEGOE PRINT" size="4" color="red"> Гимн Санкт-Петербурга
+            </font><br>
+            <audio controls <source src="audio/hymn.mp3">
+            </audio>
+        </p>
+    </center>
+    <p align="justify">
+        <font face="Times New Roman" size="10" color="blue">
+            &nbspНа нашей планете есть множество естественных и искусственных объектов, которые
+            поражают наше воображение. Это <b><i>пирамиды</i></b> в Египте и Мексике, истуканы на острове Пасхи,
+            дворец <b>Тадж-Махал</b> в Индии, Стоунхендж в Великобритании, Ниагарский водопад в Канаде,
+            <u>Большой каньон</u> в Колорадо и многие другие. Их называют «Чудеса света». Ежегодно сотни
+            тысяч туристов приезжают посмотреть на эти диковины, принося ощутимый доход
+            государствам, на территории которых они расположены.
+    </p>
+    <p align="justify">
+        <font face="Times New Roman" size="10" color="blue">
+            &nbspОднако не обязательно ехать в далекие страны, чтобы увидеть удивительные
+            природные ландшафты, памятники старины и произведения архитектуры. В нашей стране
+            тоже есть уникальные объекты, которые находятся в одном из самых красивых городов
+            России. Представляем Вам Санкт-Петербург.
+    </p>
+    <table border="1" align="center" width="60%">
+        <tr align="center" valign="center">
+            <td> <a href="images/medvsad.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/medvsad.jpeg" alt="Медный всадник"></a></td>
+            <td> <a href="images/ermitage.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/ermitage.jpeg" alt="Государственный Эррмитаж"></a></td>
+            <td> <a href="images/avrora.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/avrora.jpeg" alt="Крейсер «Аврора»"></a></td>
+        </tr>
+
+        <tr align="center" valign="center">
+            <td> <a href="images/admiral.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/admiral.jpeg" alt="Здание главного Адмиралтейства"></td>
+            <td> <a href="images/krepost.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/krepost.jpeg" alt="Петропавловская крепость"></a></td>
+            <td> <a href="images/lev.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/lev.jpeg" alt="Львы Санкт-Петербурга"></a></td>
+        </tr>
+        <tr align="center" valign="center">
+            <td> <a href="images/kamera.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/kamera.jpeg" alt="Кунсткамера"></a></td>
+            <td> <a href="images/strela.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/strela.jpeg" alt="Стрелка Васильевского острова"></a></td>
+            <td> <a href="images/sobor.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/sobor.jpeg" alt="Исаакиевский собор"></a></td>
+        </tr>
+        <tr align="center" valign="center">
+            <td> <a href="images/spas.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/spas.jpeg" alt="Храм Спаса-на-Крови"></a></td>
+            <td> <a href="images/monastir.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/monastir.jpeg" alt="Смольный монастырь"></a></td>
+            <td> <a href="images/sad.jpeg" target="_blank"> <img align="left" width="150" height="150"
+                        src="images/sad.jpeg" alt="Летний сад"></a></td>
+        </tr>
+    </table>
           
     <footer>
         <form action="" method="post">

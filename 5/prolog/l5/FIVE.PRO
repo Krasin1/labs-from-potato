@@ -1,4 +1,3 @@
-%trace
 domains
     manifacturer, country, part_number, name = string
     id, count = integer
@@ -9,22 +8,27 @@ domains
 database
     only_fans(id, manifacturer, part_number, name, count, price)
     last_id(integer)
+    rowCount(integer)
 predicates
     clear_database()
+    clear_vars()
     choose(integer)
     menu()
     process(integer)
     search(integer)
     newLastId(integer)
     incrementLastId(integer) 
+    getLastId()
 
     readRows()
     readValue(string,string,string) 
     writeCsv()
 
     printRows()
-    printRow(integer)
+    printRow(integer, integer)
     printLegend()
+    page(integer)
+    decision(integer)
 
     substr(string, string)
     substr(string,string,string,string)     
@@ -33,7 +37,7 @@ predicates
     searchPartNumber(string) 
 
     getCountry(string, string)
-    pretty(string,string,string,string,string,string,string) 
+    pretty(string,string,string,string,string,string,string,integer) 
     checkLen(integer, string,string,string) 
     writeSpaces(integer)
     specialWrite(integer, string) 
@@ -60,20 +64,20 @@ clauses
     substr(S,SS):-
         frontchar(S,SC,S_),
         frontchar(SS,SC,SS_),
-        substr(S_,SS_).
+        substr(S_,SS_),!.
     substr(S,SS):-
         frontchar(S,_,S_),
-        substr(S_,SS).
+        substr(S_,SS),!.
         
     substr(_,"",R,R):-!.
     substr("",_,_,""):-!.
     substr(S,SS,RT,R):-
         frontchar(S,SC,S_),
         frontchar(SS,SC,SS_),
-        substr(S_,SS_,RT,R).
+        substr(S_,SS_,RT,R),!.
     substr(S,SS,_,R):-
         frontchar(S,_,S_),
-        substr(S_,SS,S_,R).
+        substr(S_,SS,S_,R),!.
         
     comparison("","",0):-!.
     comparison(_,"",1):-!.
@@ -92,13 +96,18 @@ clauses
     choose(X) :-
         readint(X);
         write("Wrong number"), readchar(_), X = 0,
-        menu.
+        removewindow, menu.
+
+    clear_vars() :-
+        retract(rowCount(_)),
+        retract(last_id(_)),
+        fail.
+    clear_vars():-!.
 
     clear_database:-
-        retract(last_id(_)),
         retract(only_fans(_,_,_,_,_,_)),
         fail.
-    clear_database:-!.
+    clear_database:-clear_vars(),!.
 
     incrementLastId(X) :-
         retract(last_id(Id)),
@@ -111,14 +120,25 @@ clauses
         last_id(Last), Last < X,
         retract(last_id(_)),
         assert(last_id(X)),!.
-    newLastId(_).
+    newLastId(X) :- 
+        assert(last_id(X)).
 
+    decision(Height) :-
+        not(rowCount(_)), assert(rowCount(5)),fail;
+        rowCount(Cnt),Height + Cnt > 22,
+        retract(rowCount(Cnt)), assert(rowCount(0));
+        rowCount(Cnt), retract(rowCount(Cnt)),
+        NewCnt = Height + Cnt, assert(rowCount(NewCnt)),fail,!.
 
+    page(Height) :-
+        decision(Height),
+        readchar(A), clearwindow,
+        A = 27.
 
     printRows() :-
         only_fans(X1,_,_,_,_,_),
-        printRow(X1),
-        readchar(A), A = 27.
+        printRow(X1,Height),
+        page(Height).
     printRows().
 
     printLegend() :-
@@ -126,11 +146,11 @@ clauses
         write("    turer             ber"),nl,
         write("------------------------------------------------------------------------------").
 
-    printRow(Id) :-
+    printRow(Id, Height) :-
         only_fans(Id, X2, X3, X4, X5, X6),
         str_int(IdString, Id), str_int(CountString, X5), str_real(PriceString, X6),
         getCountry(X2, Country), 
-        pretty(IdString, X2, Country, X3, X4, CountString, PriceString),!.
+        pretty(IdString, X2, Country, X3, X4, CountString, PriceString, Height),!.
 
     specialWrite(Len, String) :-
         str_len(String, StrLen),
@@ -151,8 +171,8 @@ clauses
         A = String, B = "",!;
         frontstr(Len, String, A, B),!.
         
-    pretty("","","","","","","").
-    pretty(X1,X2,X3,X4,X5,X6,X7) :-
+    pretty("","","","","","","", Height) :- Height = 0.
+    pretty(X1,X2,X3,X4,X5,X6,X7,Height) :-
         checkLen(3, X1, X11, X12), specialWrite(3, X11), write("  "),
         checkLen(7, X2, X21, X22), specialWrite(7, X21), write("  "),
         checkLen(7, X3, X31, X32), specialWrite(7, X31), write("  "),
@@ -160,7 +180,9 @@ clauses
         checkLen(31,X5, X51, X52), specialWrite(31,X51), write("  "),
         checkLen(5, X6, X61, X62), specialWrite(5, X61), write("  "),
         checkLen(5, X7, X71, X72), specialWrite(5, X71), 
-        pretty(X12,X22,X32,X42,X52,X62,X72).
+        pretty(X12,X22,X32,X42,X52,X62,X72, New),
+        Height = New + 1.
+
         
 
     writeCsv() :-
@@ -186,6 +208,14 @@ clauses
 
         !.
 
+    getLastId() :-
+        not(last_id(_)), assert(last_id(0)),fail.
+    getLastId() :-
+        only_fans(Id,_,_,_,_,_),
+        newLastId(Id),fail.
+    getLastId() :- !.
+        
+
     readValue("", "", "") :- !.
     readValue(Line, X, Tail) :-
         frontchar(Line, LineH, LineT),
@@ -201,7 +231,7 @@ clauses
     menu :-
         makewindow(1,23,65, "Only Fans for Pegeot 408 TU5JP5",0, 0,25,80),
         clearwindow,nl,
-        write(" ---------------- "),nl,
+        write(" ------------------------------------- "),nl,
         write(" 1 - Read database from .csv"), nl,
         write(" 2 - Read database from prolog file"), nl,
         write(" 3 - Show database"), nl,
@@ -213,7 +243,7 @@ clauses
         write(" 9 - Write database to prolog file"), nl,
         write(" 10 - Clear database"), nl,
         write(" 11 - Exit"), nl,
-        write(" ---------------- "),nl,
+        write(" ------------------------------------- "),nl,
         write(" Choose number 1-11: "),
         choose(X), nl, process(X).
 
@@ -239,6 +269,7 @@ clauses
         concat("C:/LABS/L5/", FileName, File),
         existfile(File), clear_database,
         consult(File),
+        getLastId(),
         write(" DB successfully read from file."), nl, !,
         write(" Press any key..."), readchar(_), 
         removewindow, clearwindow, menu;
@@ -249,7 +280,10 @@ clauses
 
     process(3) :-
         makewindow(4,23,65,  " All database ",0, 0,25,80), shiftwindow(4),
-        printLegend(), printRows(),!,
+        printLegend(), printRows(),
+        write(" Press any key..."), readchar(_), 
+        removewindow, clearwindow, menu;
+
         write(" Press any key..."), readchar(_), 
         removewindow, clearwindow, menu.
 
@@ -274,7 +308,7 @@ clauses
     process(5) :-
         makewindow(6,23,65, " Delete fan " ,0,0,20,80), shiftwindow(6),
         write(" Input Id of row: "), readint(Id),nl, 
-        printLegend(), printrow(Id), 
+        printLegend(), printRow(Id,_), 
         retract(only_fans(Id,_,_,_,_,_)), 
         write(" This row was deleted"),nl, !,
         write(" Press any key..."), readchar(_), 
@@ -287,7 +321,7 @@ clauses
     process(6) :-
         makewindow(7,23,65, " Edit fan " ,0,0,20,80), shiftwindow(7),
         write(" Input Id of row: "), readint(Id),
-        printLegend(), printrow(Id), nl,
+        printLegend(), printRow(Id,_), nl,
         write(" Fill next fields:"),nl,
         write(" Manifacturer: "), readln(Manifacturer),nl,
         write(" Part number: "), readln(PartNumber),nl,
@@ -367,7 +401,7 @@ clauses
 
     search(1) :-
         write(" Input Id of row: "), readint(Id),
-        printLegend(), printrow(Id),nl,!;
+        printLegend(), printRow(Id,_),nl,!;
 
         write(" No entries found"),nl,!,
         write(" Press any key..."), readchar(_),
@@ -398,13 +432,13 @@ clauses
 
     searchName(Line) :-
         only_fans(Id,_,_,Name,_,_), substr(Name, Line),
-        printRow(Id),
+        printRow(Id,_),
         readchar(A), A = 27, 
         removewindow, clearwindow, menu.
 
     searchPartNumber(Line) :-
         only_fans(Id,_,PartNumber,_,_,_), substr(PartNumber, Line),
-        printRow(Id),
+        printRow(Id,_),
         readchar(A), A = 27, 
         removewindow, clearwindow, menu.
 
