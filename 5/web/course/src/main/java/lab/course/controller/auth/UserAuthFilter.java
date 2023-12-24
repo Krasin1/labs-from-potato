@@ -30,7 +30,7 @@ public class UserAuthFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         //URL Запроса/переадресации на Servlet входа
-        String loginURI = "/login.jsp";
+        String loginURI = "/login";
 
         //Если сессия ранее создана
         boolean loggedIn = session != null &&

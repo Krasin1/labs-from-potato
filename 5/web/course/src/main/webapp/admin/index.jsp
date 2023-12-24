@@ -11,6 +11,10 @@
     <script>alert("Пользователь не найден")</script>
 <% } %>
 
+<% if (request.getSession().getAttribute("noProduct") != null && (boolean)request.getSession().getAttribute("noProduct")) { %>
+<script>alert("Товар не найден")</script>
+<% } %>
+
 <jsp:include page="/header.jsp"/>
 <h1>Администрирование:</h1>
 

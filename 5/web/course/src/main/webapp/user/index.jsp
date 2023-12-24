@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link type="text/css" href="/style.css" rel="stylesheet">
+    <link type="text/css" href="style.css" rel="stylesheet">
 </head>
 <body>
     <jsp:include page="/header.jsp"/>

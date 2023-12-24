@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link type="text/css" href="/style.css" rel="stylesheet">
+<link type="text/css" href="style.css" rel="stylesheet">
 <style> * {margin: 5px; padding: 5px;} </style>
 <header style="width: 100%; position:sticky; top: 10px; overflow: hidden; background-color: azure">
     <nav style="display:flex; justify-content: space-between">

@@ -25,6 +25,9 @@ public class RedirectToEditProduct extends HttpServlet {
             request.getSession().setAttribute("product_barcode", product.getBarcode());
             request.getSession().setAttribute("product_count", product.getCount_in_stok());
             request.getSession().setAttribute("product_price", product.getPrice());
+        } else {
+            request.getSession().setAttribute("noProduct", true);
+            request.getRequestDispatcher("/login").forward(request, response);
         }
         request.getRequestDispatcher("/editProduct").forward(request, response);
     }
