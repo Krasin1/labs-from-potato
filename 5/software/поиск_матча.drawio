@@ -1,0 +1,80 @@
+<mxfile host="app.diagrams.net" modified="2023-12-27T05:27:48.446Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="u55tuBZXb8OQ8FQRLxDe" version="22.1.11" type="device">
+  <diagram name="Page-1" id="rHqiWOhmaw8bvzcRMqz3">
+    <mxGraphModel dx="582" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n0WK65U6Vosh32xMABdK-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n0WK65U6Vosh32xMABdK-1" target="n0WK65U6Vosh32xMABdK-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-1" value="" style="ellipse;fillColor=strokeColor;html=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="70" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n0WK65U6Vosh32xMABdK-3" target="n0WK65U6Vosh32xMABdK-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-3" value="Выбрать пункт&lt;br&gt;&quot;поиск матча&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n0WK65U6Vosh32xMABdK-4" target="n0WK65U6Vosh32xMABdK-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-7" value="Пользователь" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="50" width="450" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-4" value="Настроить фильтры для поиска(дата, команда, стадион, и т.д.)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="n0WK65U6Vosh32xMABdK-7">
+          <mxGeometry x="145" y="170" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-8" value="HockeyPoint" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="300" width="450" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="n0WK65U6Vosh32xMABdK-8" source="n0WK65U6Vosh32xMABdK-9" target="n0WK65U6Vosh32xMABdK-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-9" value="По получанным данным приложение ищет матчи" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="145" y="20" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-2" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="205" y="370" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="n0WK65U6Vosh32xMABdK-8" source="n0WK65U6Vosh32xMABdK-12" target="n0WK65U6Vosh32xMABdK-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="160" />
+              <mxPoint x="90" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="n0WK65U6Vosh32xMABdK-8" source="n0WK65U6Vosh32xMABdK-12" target="n0WK65U6Vosh32xMABdK-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-12" value="Матчи найдены?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="175" y="120" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="n0WK65U6Vosh32xMABdK-8" source="n0WK65U6Vosh32xMABdK-15" target="n0WK65U6Vosh32xMABdK-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-15" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="187.5" y="290" width="65" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="n0WK65U6Vosh32xMABdK-8" source="n0WK65U6Vosh32xMABdK-17" target="n0WK65U6Vosh32xMABdK-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="365" y="270" />
+              <mxPoint x="220" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-17" value="Выводит список матчей" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="304" y="200" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-23" value="Нет" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="130" y="130" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="n0WK65U6Vosh32xMABdK-22" value="Да" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="n0WK65U6Vosh32xMABdK-8">
+          <mxGeometry x="264" y="130" width="40" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
